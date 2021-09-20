@@ -1,7 +1,7 @@
 <template>
   <div class="ingreso">
-    <button @click="home">Home</button>
-    <h2>Por favor ingrese registrese para ingresar</h2>
+    <button @click="cuadro1">ir a Cuadro Cotizacion</button>
+    <h2>FORMULARIO DE INGRESO</h2>
     <p class="subheading font-weight-regular">
       Registrarse--> 
       <a href="..//login.html" target="_blank"
@@ -15,8 +15,8 @@
 <script>
 export default {
   methods: {
-    home() {
-      this.$router.push("/");
+    cuadro1() {
+      this.$router.push("/cuadrocotiza");
     },
   },
 };

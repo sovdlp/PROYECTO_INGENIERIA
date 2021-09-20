@@ -19,7 +19,7 @@ const routes = [
   {
     path: '/cuadrocotiza',
     name: 'CuadroCotiza',
-    component: () => import(/* webpackChunkName: "cuadro" */ '../components/CuadroCotizacion.vue')
+    component: () => import(/* webpackChunkName: "cuadro" */ '../views/Cuadro.vue')
   },
   {
     path: '/cuadroapu',

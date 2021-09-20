@@ -142,7 +142,7 @@
             <v-data-table
                 v-model="selected"
                 dense
-                :headers="headers3"
+                :headers="headers2"
                 :items="impuestos"
                 :single-select="singleSelect"
                 item-key="descripcion"
@@ -169,33 +169,6 @@
             </v-col>
         </v-row>
         <br><br>
-
-        <v-footer
-            color="indigo"
-            padless
-            >
-            <v-row
-            justify="center"
-            no-gutters
-            >
-            <v-btn
-                v-for="link in links"
-                :key="link"
-                color="white"
-                text
-                rounded
-                class="my-2"
-            >
-                {{ link }}
-            </v-btn>
-            <v-col
-                class="primary lighten-2 py-4 text-center white--text"
-                cols="12"
-            >
-                {{ new Date().getFullYear() }} — <strong>Ingenieria S.A.</strong>
-            </v-col>
-            </v-row>
-        </v-footer>
     </v-container>
 
 </template>
@@ -204,12 +177,13 @@
     //import items from "../store/Almacen_items.js";
     export default {
         data: () => ({
+        
         rules: [
         value => !!value || 'Requerido.',
         value => (value && value.length >= 3) || 'Min 3 caracteres',
         ],
 
-    items: [
+        items: [
         {
             item: '1.1',
             calories: 159,
@@ -290,9 +264,9 @@
             protein: 7,
             iron: '6%',
         },
-    ],
-      
-      indirectos: [
+        ],
+
+        indirectos: [
             {
             descripcion: 'Administración',
             porcentaje: '10%',
@@ -309,6 +283,7 @@
             vrindirecto: '$15645',
             },
         ],
+        
         impuestos: [
             {
             descripcion: 'IVA/Utilidades',
@@ -321,7 +296,6 @@
             vrindirecto: '$12345',
             },
         ],
-
         selected: [],
         headers: [
             { text: 'Ítem', align: 'start', sortable: false, value: 'item', },
@@ -331,24 +305,13 @@
             { text: 'Valor unit', sortable: false, value: 'protein' },
             { text: 'Valor total',  sortable: false, value: 'iron' },
         ],
+        
         headers2: [
             { text: 'Descripción', sortable: false, align: 'start', value: 'descripcion', },
             { text: 'Porcentaje', sortable: false, value: 'porcentaje' },
             { text: 'Valor Total', sortable: false, value: 'vrindirecto' },
         ],
-        headers3: [
-            { text: 'Descripción', sortable: false, align: 'start', value: 'descripcion', },
-            { text: 'Porcentaje', sortable: false, value: 'porcentaje' },
-            { text: 'Valor Total', sortable: false, value: 'vrindirecto' },
-        ],
-        links: [
-            'Inicio',
-            'Nosotros',
-            'Equipo',
-            'Servicios',
-            'Blog',
-            'Contactanos',
-        ],
+
         }),
     }
 </script>
