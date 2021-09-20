@@ -3,7 +3,9 @@
     <div id="nav">
       <router-link to="/">Home</router-link> |
       <router-link to="/ingreso">Ingreso</router-link> | 
-      <router-link to="/cuadrocotiza">Cuadro</router-link> |      
+      <router-link to="/cuadrocotiza">Cuadro</router-link> |
+      <router-link to="/cuadroapu">APU</router-link> |      
+      <router-link to="/cuadromateriales">Materiales</router-link> |
       <router-link to="/about">About</router-link>
     </div>
     <router-view/>
