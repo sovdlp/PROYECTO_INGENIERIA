@@ -27,6 +27,11 @@ const routes = [
     component: () => import(/* webpackChunkName: "APU" */ '../views/APU.vue')
   },
   {
+    path: '/cuadromateriales',
+    name: 'Materiales',
+    component: () => import(/* webpackChunkName: "APU" */ '../views/Materiales.vue')
+  },
+  {
     path: '/about',
     name: 'About',
     // route level code-splitting

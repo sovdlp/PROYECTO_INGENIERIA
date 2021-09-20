@@ -1,5 +1,6 @@
 <template>
-  <div>
+  <div class="ingreso">
+    <button @click="home">Home</button>
     <h2>Por favor ingrese registrese para ingresar</h2>
     <p class="subheading font-weight-regular">
       Registrarse--> 
@@ -12,7 +13,13 @@
 </template>
 
 <script>
-
+export default {
+  methods: {
+    home() {
+      this.$router.push("/");
+    },
+  },
+};
 </script>
 
 <style>
