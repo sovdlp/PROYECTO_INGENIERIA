@@ -8,12 +8,16 @@
         >Página de registro</a
       >
     </p>
-
+  <Piedepagina />
   </div>
 </template>
 
 <script>
+import Piedepagina from "@/components/piedepagina.vue";
 export default {
+    components: {
+    Piedepagina
+  },
   methods: {
     cuadro1() {
       this.$router.push("/cuadrocotiza");

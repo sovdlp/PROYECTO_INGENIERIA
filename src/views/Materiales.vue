@@ -6,15 +6,18 @@
                 Materiales-->
                 <a href="../../apu.html" target="_blank">Gestión de materiales</a>
             </p>
+        <Piedepagina />
     </div>
 </template>
 
 <script>
 
 //import Apu from "../../public/login.html";
-
+import Piedepagina from "@/components/piedepagina.vue";
 export default {
-
+    components: {
+    Piedepagina
+  },
     methods: {
     home() {
         this.$router.push("/");
