@@ -6,15 +6,15 @@
 </template>
 
 <script>
-import Piedepagina from '@/components/piedepagina.vue'
-// @ is an alias to /src
 
+
+import Piedepagina from '@/components/piedepagina.vue'
 
 export default {
   name: 'Home',
   components: {
     Piedepagina
-    
   }
+
 }
 </script>

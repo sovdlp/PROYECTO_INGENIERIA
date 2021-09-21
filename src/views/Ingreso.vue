@@ -4,7 +4,7 @@
     <h2>FORMULARIO DE INGRESO</h2>
     <p class="subheading font-weight-regular">
       Registrarse--> 
-      <a href="..//login.html" target="_blank"
+      <a href="http://127.0.0.1:5501/public/login.html" target="_blank"
         >Página de registro</a
       >
     </p>

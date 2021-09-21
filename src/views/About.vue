@@ -2,6 +2,9 @@
   <div class="about">
         <v-btn @click="inicio">ir a Inicio</v-btn>
     <h2>APLICACION CREADA POR EL GRUPO 62-3 MISION TIC 2022</h2>
+
+    <items />
+
     <v-card class="mx-auto" max-width="344">
       <v-img
         src="../assets/ingenieria_sa.png"
@@ -32,19 +35,25 @@
         </div>
       </v-expand-transition>
     </v-card>
+
     <Piedepagina />
   </div>
 </template>
 <script>
+
 import Piedepagina from "@/components/piedepagina.vue";
+import Items from "@/components/items.vue";
+
 export default {
     data: () => ({
     show: false,
   }),
   components: {
     Piedepagina,
+    Items,
   },
-  methods: {
+  
+    methods: {
     inicio() {
       console.log("ir al inicio.." )
       this.$router.push("/");
