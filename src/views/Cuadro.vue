@@ -1,6 +1,6 @@
 <template>
   <div class="cuadrocotiza">
-    <button @click="apu1">ir a APU</button>
+    <v-btn @click="apu1">ir a APU</v-btn>
     <h2>CUADRO DE COTIZACION</h2>
     <Cuadro />
     <Piedepagina />

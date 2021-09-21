@@ -1,6 +1,6 @@
 <template>
     <div class="cuadromateriales">
-        <button @click="home">Home</button>
+        <v-btn @click="home">Inicio</v-btn>
             <h2>MATERIALES</h2>
             <p class="subheading font-weight-regular">
                 Materiales-->

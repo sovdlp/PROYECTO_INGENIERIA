@@ -50,7 +50,7 @@
                     <v-col cols="5"><v-text-field dense label="Nombre empresa proponente " :rules="rules" hide-details="auto" ></v-text-field></v-col>
                     <v-col cols= "2">
                         <v-img
-                            :src="require('../assets/logo.svg')"
+                            :src="require('../assets/ingenieria_sa.png')"
                             class="my-3"
                             contain
                             height="100"

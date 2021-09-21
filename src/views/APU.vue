@@ -1,6 +1,6 @@
 <template>
   <div class="cuadroapu">
-    <button @click="materiales">ir a Materiales</button>
+    <v-btn @click="materiales">ir a Materiales</v-btn>
         <h2>ANALISIS DE PRECIOS UNITARIOS</h2>
         <p class="subheading font-weight-regular">
       APU--> 
