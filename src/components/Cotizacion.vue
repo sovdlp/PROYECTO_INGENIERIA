@@ -139,23 +139,28 @@
       <!------------------------------------------------------------->
     </v-row>
     <!------------------------------------------------------------------------------------------------------>
+
     <v-footer
-      color="primary lighten-8"
+    
+      color="primary lighten-6"
       padless
     >
       <v-row
         justify="center"
         no-gutters
        >
+      
         <v-btn
+         rounded
          v-for="link in links"
           :key="link"
           color="black"
           text
-          rounded        
+                  
         >
           {{ link }}
         </v-btn>
+        
         <v-col
           class="primary lighten-2 py-4 text-center white--text"
           cols="12"
@@ -166,6 +171,7 @@
         </v-col>
       </v-row>
     </v-footer>
+
     <!------------------------------------------------------------------------------------------------------>
   </div>
 </template>

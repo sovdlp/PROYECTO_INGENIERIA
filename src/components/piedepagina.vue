@@ -16,7 +16,7 @@
         </v-card-title>
 
         <v-card-text class="py-2 white--text text-center">
-          {{ new Date().getFullYear() }} — <strong>Ingenieria S.A.</strong>
+          {{ new Date().getFullYear() }} — <strong>Copyright © - MisiónTIC2022 UTP P62-3 - All Rights Reserved</strong>
         </v-card-text>
       </v-card>
     </v-footer>
