@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     <h2>PRESENTACION</h2>
-    <cotizacion />
+    <Cotizacion />
     <Piedepagina />
     
   </div>
