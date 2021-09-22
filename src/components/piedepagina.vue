@@ -21,16 +21,6 @@
           >
         </v-card-text>
       </v-card>
-    </v-footer>
-    <v-footer paddles>
-      <v-row no-gutters>
-        <v-col class="red--text">
-          <strong>
-            Copyright © - MisiónTIC2022 UTP P62-3 - All Rights Reserved
-          </strong>
-        </v-col>
-      </v-row>
-    </v-footer>
   </v-container>
 </template>
 <script>
