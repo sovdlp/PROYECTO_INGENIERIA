@@ -6,7 +6,7 @@
             <br /><br />
         </div>
 
-        <h3 class="center"> I. INFORMACION DEL PROYECTO</h3> 
+        <h3 class="center"> I. INFORMACION DEL PROYECTO dasd</h3> 
 
         <div class="text-md-left font-italic body-2">
             <v-card class="pa-2" outlined tile>
