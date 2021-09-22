@@ -21,6 +21,7 @@
           >
         </v-card-text>
       </v-card>
+    </v-footer>
   </v-container>
 </template>
 <script>
