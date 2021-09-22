@@ -29,7 +29,7 @@ const routes = [
   {
     path: '/cuadromateriales',
     name: 'Materiales',
-    component: () => import(/* webpackChunkName: "APU" */ '../views/Materiales.vue')
+    component: () => import(/* webpackChunkName: "materiales" */ '../views/Materiales.vue')
   },
   {
     path: '/about',

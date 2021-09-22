@@ -2,9 +2,11 @@
   <div>
     <div class="items">
       <div v-for="items in items" :key="items.item">
-        
-          <p>{{ items.item }}-{{items.descripcion}}-{{items.unidad}}-{{items.cantidad}}-{{items.valorunit}}-{{items.valortotal}}</p>
-        
+        <p>
+          {{ items.item }}-{{ items.descripcion }}-{{ items.unidad }}-{{
+            items.cantidad
+          }}-{{ items.valorunit }}-{{ items.valortotal }}
+        </p>
       </div>
     </div>
   </div>
