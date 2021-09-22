@@ -139,41 +139,6 @@
       </v-col>
       <!------------------------------------------------------------->
     </v-row>
-    <!------------------------------------------------------------------------------------------------------>
-
-    <v-footer
-    
-      color="primary lighten-6"
-      padless
-    >
-      <v-row
-        justify="center"
-        no-gutters
-       >
-      
-        <v-btn
-         rounded
-         v-for="link in links"
-          :key="link"
-          color="black"
-          text
-                  
-        >
-          {{ link }}
-        </v-btn>
-        
-        <v-col
-          class="primary lighten-2 py-4 text-center white--text"
-          cols="12"
-         >
-          <strong>
-            Copyright © - MisiónTIC2022 UTP P62-3 - All Rights Reserved
-          </strong>
-        </v-col>
-      </v-row>
-    </v-footer>
-
-    <!------------------------------------------------------------------------------------------------------>
   </div>
 </v-container>
 </template>
@@ -183,16 +148,6 @@
 <!---------------------------------------------------------------------------------------------------------->
 <script>
   export default {
-    data: () => ({
-      links: [
-        'Home',
-        'About Us',
-        'Team',
-        'Services',
-        'web',
-        'Contact Us',
-      ],
-    }),
   }
 </script>
 <!---------------------------------------------------------------------------------------------------------->
