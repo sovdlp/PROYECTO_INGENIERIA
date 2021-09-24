@@ -109,7 +109,6 @@
       <br /><br />
     </div>
     <h3 class="center">II. CUADRO DE COSTOS DIRECTOS</h3>
-    <items />
     <div>
       <v-row class="text-left">
         <v-col cols="6">
@@ -129,13 +128,15 @@
         </v-col>
       </v-row>
 
-      <v-data-table
-        dense
-        :headers="headers"
-        :items="items"
-        item-key="item"
-        class="elevation-1"
-      ></v-data-table>
+      <v-card class="mx-auto mt-5">
+          <v-data-table
+            dense
+            :headers="columnas"
+            :items="items"
+            item-key="item"
+            class="elevation-1"
+          ></v-data-table>
+      </v-card>
 
       <v-row>
         <v-col cols="8">
@@ -221,7 +222,7 @@
 </template>
 
 <script>
-import Items from "@/components/items.vue";
+import store from "../store/tbl_items.js";
 
 export default {
   data: () => ({
@@ -229,7 +230,7 @@ export default {
       (value) => !!value || "Requerido.",
       (value) => (value && value.length >= 3) || "Min 3 caracteres",
     ],
-
+    items: store.items,
     indirectos: [
       {
         descripcion: "Administración",
@@ -260,14 +261,14 @@ export default {
         vrindirecto: "$12345",
       },
     ],
-    selected: [],
-    headers: [
-      { text: "Ítem", align: "start", sortable: false, value: "item" },
-      { text: "Descripción", sortable: false, value: "calories" },
-      { text: "Unidad", sortable: false, value: "fat" },
-      { text: "Cantidad", sortable: false, value: "carbs" },
-      { text: "Valor unit", sortable: false, value: "protein" },
-      { text: "Valor total", sortable: false, value: "iron" },
+
+     columnas: [
+      { text: "ÍTEM", align: "center", sortable: false, value: "item", class:"grey" },
+      { text: "DESCRIPCIÓN", alingn:"start", sortable: false, value: "descripcion", class:"grey" },
+      { text: "UNIDAD", align: "center",sortable: false, value: "unidad", class:"grey" },
+      { text: "CANTIDAD", align: "center",sortable: false, value: "cantidad", class:"grey" },
+      { text: "VALOR UNITARIO", align: "right",sortable: false, value: "valorunit", class:"grey" },
+      { text: "VALOR TOTAL", align: "end",sortable: false, value: "valortotal", class:"grey" }
     ],
 
     headers2: [
@@ -283,7 +284,7 @@ export default {
   }),
 
   components: {
-    Items,
+    
   },
 };
 </script>
