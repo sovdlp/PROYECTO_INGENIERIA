@@ -30,7 +30,7 @@
         <v-col cols="3">
           <v-img :src="require('../assets/Elec1.jpg')" contain height="100" />
           <h1 class="display font-weight-bold">Nueva</h1>
-          <h2 class="display font-weight-bold">Cotizacón</h2>
+          <h2 class="display font-weight-bold">Cotización</h2>
           <p class="pa-md-6 text-justify text--secondary text-subtitle-2">
             En este módulo podrá crear una cotización completamente nueva. Aquí
             puede seleccionar un cliente, seleccionar los productos y los
@@ -42,7 +42,7 @@
         <v-col cols="3">
           <v-img :src="require('../assets/Elec2.jpg')" contain height="100" />
           <h1 class="display font-weight-bold">Editar</h1>
-          <h2 class="display font-weight-bold">Cotizacón</h2>
+          <h2 class="display font-weight-bold">Cotización</h2>
           <p class="pa-md-6 text-justify text--secondary text-subtitle-2">
             En este módulo podrá Editar una cotización ya existente. Aquí puede
             seleccionar una Cotización, seleccionar los productos y los
