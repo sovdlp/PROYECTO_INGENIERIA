@@ -1,24 +1,20 @@
 <template>
   <div class="home">
     <h2>PRESENTACION</h2>
-    <cotizacion />
+    <Cotizacion />
     <Piedepagina />
-    
   </div>
 </template>
 
 <script>
-
-
-import Piedepagina from '@/components/piedepagina.vue'
-import Cotizacion from '../components/Cotizacion.vue'
+import Piedepagina from "@/components/piedepagina.vue";
+import Cotizacion from "../components/Cotizacion.vue";
 
 export default {
-  name: 'Home',
+  name: "Home",
   components: {
     Piedepagina,
-    Cotizacion
-  }
-
-}
+    Cotizacion,
+  },
+};
 </script>

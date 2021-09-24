@@ -1,13 +1,15 @@
 <template>
     <div class="cuadromateriales">
-        <v-btn @click="home">Inicio</v-btn>
-            <h2>MATERIALES</h2>
+         <a href="../../Materiales.html" target="_blank">GESTION DE MATERIALES</a>
             <p class="subheading font-weight-regular">
-                Materiales-->
-                <a href="../../apu.html" target="_blank">Gestión de materiales</a>
+                <v-row class="text-left">
+                    <v-col cols="40">    
+                    </v-col>
+                </v-row>
             </p>
         <Piedepagina />
     </div>
+    
 </template>
 
 <script>

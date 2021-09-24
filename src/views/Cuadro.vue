@@ -14,7 +14,7 @@ import Piedepagina from "@/components/piedepagina.vue";
 export default {
   components: {
     Cuadro,
-    Piedepagina
+    Piedepagina,
   },
   methods: {
     apu1() {
