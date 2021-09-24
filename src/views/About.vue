@@ -3,7 +3,6 @@
     <v-btn @click="inicio">ir a Inicio</v-btn>
     <h2>APLICACION CREADA POR EL GRUPO 62-3 MISION TIC 2022</h2>
 
-    <items />
 
     <v-card class="mx-auto" max-width="344">
       <v-img src="../assets/ingenieria_sa.png" height="200px"></v-img>
@@ -41,7 +40,6 @@
 </template>
 <script>
 import Piedepagina from "@/components/piedepagina.vue";
-import Items from "@/components/items.vue";
 
 export default {
   data: () => ({
@@ -49,7 +47,6 @@ export default {
   }),
   components: {
     Piedepagina,
-    Items,
   },
 
   methods: {
