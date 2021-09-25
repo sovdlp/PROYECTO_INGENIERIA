@@ -22,6 +22,11 @@ const routes = [
     component: () => import(/* webpackChunkName: "cuadro" */ '../views/Cuadro.vue')
   },
   {
+    path: '/editarcuadro',
+    name: 'Editaruadro',
+    component: () => import(/* webpackChunkName: "cuadro" */ '../components/EditarCotizacion.vue')
+  },
+  {
     path: '/cuadroapu',
     name: 'APU',
     component: () => import(/* webpackChunkName: "APU" */ '../views/APU.vue')

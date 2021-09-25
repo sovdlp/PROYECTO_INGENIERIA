@@ -125,17 +125,20 @@
           <v-btn class="ma-2" color="indigo" outlined small
             >Cargar archivo cantidades</v-btn
           >
+          <v-btn class="ma-2" color="indigo" outlined small @click="editarCuadro()">
+            >Edición</v-btn
+          >
         </v-col>
       </v-row>
 
       <v-card class="mx-auto mt-5">
-          <v-data-table
-            dense
-            :headers="columnas"
-            :items="items"
-            item-key="item"
-            class="elevation-1"
-          ></v-data-table>
+        <v-data-table
+          dense
+          :headers="columnas"
+          :items="items"
+          item-key="item"
+          class="elevation-1"
+        ></v-data-table>
       </v-card>
 
       <v-row>
@@ -166,16 +169,18 @@
           >
         </v-col>
       </v-row>
-      <v-data-table
-        dense
-        :headers="headers2"
-        :items="indirectos"
-        :single-select="singleSelect"
-        item-key="descripcion"
-        show-select
-        class="elevation-1"
-        hide-default-footer
-      ></v-data-table>
+      <v-card class="mx-auto mt-5">
+        <v-data-table
+          dense
+          :headers="columnas2"
+          :items="indirectos"
+          :single-select="false"
+          item-key="descripcion"
+          show-select
+          class="elevation-1"
+          hide-default-footer
+        ></v-data-table>
+      </v-card>
 
       <v-row>
         <v-col cols="8">
@@ -188,18 +193,18 @@
 
       <br />
       <h3 class="center">IV. CUADRO DE IMPUESTOS</h3>
-      <v-data-table
-        v-model="selected"
-        dense
-        :headers="headers2"
-        :items="impuestos"
-        :single-select="singleSelect"
-        item-key="descripcion"
-        show-select
-        class="elevation-1"
-        hide-default-footer
-      ></v-data-table>
-
+      <v-card class="mx-auto mt-5">
+        <v-data-table
+          dense
+          :headers="columnas2"
+          :items="impuestos"
+          :single-select="true"
+          item-key="descripcion"
+          show-select
+          class="elevation-1"
+          hide-default-footer
+        ></v-data-table>
+      </v-card>
       <v-row>
         <v-col cols="8">
           <p class="left">SUBTOTAL IMPUESTOS</p>
@@ -231,60 +236,98 @@ export default {
       (value) => (value && value.length >= 3) || "Min 3 caracteres",
     ],
     items: store.items,
-    indirectos: [
+    indirectos: store.indirectos,
+    impuestos: store.impuestos,
+
+    columnas: [
       {
-        descripcion: "Administración",
-        porcentaje: "10%",
-        vrindirecto: "$42345",
+        text: "ÍTEM",
+        align: "center",
+        sortable: false,
+        value: "item",
+        class: "grey",
+        width: "7%",
+        divider: "true"
       },
       {
-        descripcion: "Imprevistos",
-        porcentaje: "5%",
-        vrindirecto: "$9876",
+        text: "DESCRIPCIÓN",
+        alingn: "start",
+        sortable: false,
+        value: "descripcion",
+        class: "grey",
+        width: "50%",
+        divider: "true"        
       },
       {
-        descripcion: "Utilidades",
-        porcentaje: "7%",
-        vrindirecto: "$15645",
+        text: "UNIDAD",
+        align: "center",
+        sortable: false,
+        value: "unidad",
+        class: "grey",
+        width: "7%",
+        divider: "true"
+      },
+      {
+        text: "CANTIDAD",
+        align: "center",
+        sortable: false,
+        value: "cantidad",
+        class: "grey",
+        width: "16%",
+        divider: "true"        
+      },
+      {
+        text: "VALOR UNITARIO",
+        align: "right",
+        sortable: false,
+        value: "valorunit",
+        class: "grey",
+        divider: "true"
+      },
+      {
+        text: "VALOR TOTAL",
+        align: "end",
+        sortable: false,
+        value: "valortotal",
+        class: "grey",
+        
       },
     ],
 
-    impuestos: [
+    columnas2: [
       {
-        descripcion: "IVA/Utilidades",
-        porcentaje: "19%",
-        vrindirecto: "$12345",
-      },
-      {
-        descripcion: "IVA Pleno",
-        porcentaje: "19%",
-        vrindirecto: "$12345",
-      },
-    ],
-
-     columnas: [
-      { text: "ÍTEM", align: "center", sortable: false, value: "item", class:"grey" },
-      { text: "DESCRIPCIÓN", alingn:"start", sortable: false, value: "descripcion", class:"grey" },
-      { text: "UNIDAD", align: "center",sortable: false, value: "unidad", class:"grey" },
-      { text: "CANTIDAD", align: "center",sortable: false, value: "cantidad", class:"grey" },
-      { text: "VALOR UNITARIO", align: "right",sortable: false, value: "valorunit", class:"grey" },
-      { text: "VALOR TOTAL", align: "end",sortable: false, value: "valortotal", class:"grey" }
-    ],
-
-    headers2: [
-      {
-        text: "Descripción",
+        text: "DESCRIPCIÓN",
         sortable: false,
         align: "start",
         value: "descripcion",
+        width: "20%",
+        class: "grey",
+        divider: "true"
       },
-      { text: "Porcentaje", sortable: false, value: "porcentaje" },
-      { text: "Valor Total", sortable: false, value: "vrindirecto" },
+      {
+        text: "PORCENTAJE",
+        sortable: false,
+        value: "porcentaje",
+        width: "10%",
+        align: "center",
+        class: "grey",
+        divider: "true"
+      },
+      {
+        text: "VALOR TOTAL",
+        sortable: false,
+        value: "vrindirecto",
+        align: "end",
+        class: "grey",
+      },
     ],
   }),
-
-  components: {
-    
+  methods: {
+    editarCuadro() {
+      console.log("editar cotizacion...");
+      this.$router.push("/editarcuadro");
+    },
   },
+  components: {},
 };
 </script>
