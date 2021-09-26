@@ -9,100 +9,39 @@
     <h3 class="center">I. INFORMACION DEL PROYECTO</h3>
 
     <div class="text-md-left font-italic body-2">
-      <v-card class="pa-2" outlined tile>
+      <v-card>
         <v-row>
-          <v-col cols="2">
-            <v-card class="pa-2" outlined tile>Cliente: </v-card>
-          </v-col>
-          <v-col cols="5"
-            ><v-text-field
+          <v-col cols="10">
+            <v-data-table
               dense
-              label="Nombre cliente "
-              :rules="rules"
-              hide-details="auto"
-            ></v-text-field
-          ></v-col>
-          <v-col cols="2">
-            <v-img
-              :src="require('../assets/logo.png')"
-              class="my-3"
-              contain
-              height="100"
-            />
+              disable-sort
+              :headers="columnas3"
+              hide-default-footer
+              :items="cotizacion"
+              class="elevation-1"
+            ></v-data-table>
           </v-col>
-          <v-col cols="2">
-            <v-btn class="ma-1" color="indigo" outlined small>Logo..</v-btn>
+          <v-col cols="1">
+            <v-card class="mx-auto pa-2" outlined tile width="120">
+              <v-img
+                :src="require('../assets/logo.png')"
+                class="my-3"
+                contain
+                height="100"
+              />
+              <v-btn class="ma-1" color="indigo" outlined small>Logo..</v-btn>
+            </v-card>
           </v-col>
-        </v-row>
-      </v-card>
-      <br />
-      <v-card class="pa-2" outlined tile>
-        <v-row>
-          <v-col cols="2">
-            <v-card class="pa-2" outlined tile>Proyecto: </v-card>
-          </v-col>
-          <v-col cols="5"
-            ><v-text-field
-              dense
-              label="Nombre proyecto"
-              :rules="rules"
-              hide-details="auto"
-            ></v-text-field
-          ></v-col>
-        </v-row>
-
-        <v-row>
-          <v-col cols="2">
-            <v-card class="pa-2" outlined tile>Contenido: </v-card>
-          </v-col>
-          <v-col cols="5"
-            ><v-text-field
-              dense
-              label="Descripción "
-              :rules="rules"
-              hide-details="auto"
-            ></v-text-field
-          ></v-col>
-        </v-row>
-
-        <v-row>
-          <v-col cols="2">
-            <v-card class="pa-2" outlined tile>Fecha: </v-card>
-          </v-col>
-          <v-col cols="5"
-            ><v-text-field
-              dense
-              label="Fecha cotización"
-              :rules="rules"
-              hide-details="auto"
-            ></v-text-field
-          ></v-col>
-        </v-row>
-      </v-card>
-      <br />
-      <v-card class="pa-2" outlined tile>
-        <v-row>
-          <v-col cols="2">
-            <v-card class="pa-2" outlined tile>Proponente: </v-card>
-          </v-col>
-          <v-col cols="5"
-            ><v-text-field
-              dense
-              label="Nombre empresa proponente "
-              :rules="rules"
-              hide-details="auto"
-            ></v-text-field
-          ></v-col>
-          <v-col cols="2">
-            <v-img
-              :src="require('../assets/ingenieria_sa.png')"
-              class="my-3"
-              contain
-              height="100"
-            />
-          </v-col>
-          <v-col cols="2">
-            <v-btn class="ma-1" color="indigo" outlined small>Logo..</v-btn>
+          <v-col cols="1">
+            <v-card class="mx-auto pa-2" outlined tile width="120">
+              <v-img
+                :src="require('../assets/logo.svg')"
+                class="my-3"
+                contain
+                height="100"
+              />
+              <v-btn class="ma-1" color="indigo" outlined small>Logo..</v-btn>
+            </v-card>
           </v-col>
         </v-row>
       </v-card>
@@ -125,7 +64,13 @@
           <v-btn class="ma-2" color="indigo" outlined small
             >Cargar archivo cantidades</v-btn
           >
-          <v-btn class="ma-2" color="indigo" outlined small @click="editarCuadro()">
+          <v-btn
+            class="ma-2"
+            color="indigo"
+            outlined
+            small
+            @click="editarCuadro()"
+          >
             >Edición</v-btn
           >
         </v-col>
@@ -238,6 +183,7 @@ export default {
     items: store.items,
     indirectos: store.indirectos,
     impuestos: store.impuestos,
+    cotizacion: store.cotizacion,
 
     columnas: [
       {
@@ -247,7 +193,7 @@ export default {
         value: "item",
         class: "grey",
         width: "7%",
-        divider: "true"
+        divider: "true",
       },
       {
         text: "DESCRIPCIÓN",
@@ -256,7 +202,7 @@ export default {
         value: "descripcion",
         class: "grey",
         width: "50%",
-        divider: "true"        
+        divider: "true",
       },
       {
         text: "UNIDAD",
@@ -265,7 +211,7 @@ export default {
         value: "unidad",
         class: "grey",
         width: "7%",
-        divider: "true"
+        divider: "true",
       },
       {
         text: "CANTIDAD",
@@ -274,7 +220,7 @@ export default {
         value: "cantidad",
         class: "grey",
         width: "16%",
-        divider: "true"        
+        divider: "true",
       },
       {
         text: "VALOR UNITARIO",
@@ -282,7 +228,7 @@ export default {
         sortable: false,
         value: "valorunit",
         class: "grey",
-        divider: "true"
+        divider: "true",
       },
       {
         text: "VALOR TOTAL",
@@ -290,7 +236,6 @@ export default {
         sortable: false,
         value: "valortotal",
         class: "grey",
-        
       },
     ],
 
@@ -302,7 +247,7 @@ export default {
         value: "descripcion",
         width: "20%",
         class: "grey",
-        divider: "true"
+        divider: "true",
       },
       {
         text: "PORCENTAJE",
@@ -311,7 +256,7 @@ export default {
         width: "10%",
         align: "center",
         class: "grey",
-        divider: "true"
+        divider: "true",
       },
       {
         text: "VALOR TOTAL",
@@ -320,6 +265,38 @@ export default {
         align: "end",
         class: "grey",
       },
+    ],
+    columnas3: [
+      {
+        text: "Cliente:",
+        align: "start",
+        value: "cliente",
+      },
+      {
+        text: "Proyecto:",
+        align: "start",
+        value: "proyecto",
+      },
+      {
+        text: "Contiene:",
+        align: "start",
+        value: "contenido",
+      },
+     {
+        text: "Fecha:",
+        align: "start",
+        value: "fecha",
+      },
+      {
+        text: "Ciudad:",
+        align: "start",
+        value: "ciudad",
+      },
+      {
+        text: "# COT:",
+        align: "start",
+        value: "numero_cot",
+      },      
     ],
   }),
   methods: {

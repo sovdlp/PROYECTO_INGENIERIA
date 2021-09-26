@@ -112,4 +112,13 @@ export default {
             vrindirecto: "$12345",
         },
     ],
+    cotizacion: [{
+        cliente:"Consorcio Ingenieria S.A.",
+        proyecto:"Casa N° 12 Bosques de Canaria",
+        contenido:" Cuadro de cantidades y precios intalaciones",
+        fecha:"12/09/2021",
+        numero_cot:"CT-001",
+        ciudad:"Armenia",
+    }
+    ]
 }
