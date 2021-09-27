@@ -11,15 +11,17 @@
     <div class="text-md-left font-italic body-2">
       <v-card>
         <v-row>
-          <v-col cols="10">
-            <v-data-table
-              dense
-              disable-sort
-              :headers="columnas3"
-              hide-default-footer
-              :items="cotizacion"
-              class="elevation-1"
-            ></v-data-table>
+          <v-col cols="6">
+
+              <v-data-table
+                dense
+                disable-sort
+                :headers="columnas3"
+                hide-default-footer
+                :items="cotizacion"
+                class=" my-2 elevation-1"
+              ></v-data-table>
+
           </v-col>
           <v-col cols="1">
             <v-card class="mx-auto pa-2" outlined tile width="120">
@@ -197,7 +199,7 @@ export default {
       },
       {
         text: "DESCRIPCIÓN",
-        alingn: "start",
+        align: "start",
         sortable: false,
         value: "descripcion",
         class: "grey",
@@ -282,7 +284,7 @@ export default {
         align: "start",
         value: "contenido",
       },
-     {
+      {
         text: "Fecha:",
         align: "start",
         value: "fecha",
@@ -296,7 +298,7 @@ export default {
         text: "# COT:",
         align: "start",
         value: "numero_cot",
-      },      
+      },
     ],
   }),
   methods: {
