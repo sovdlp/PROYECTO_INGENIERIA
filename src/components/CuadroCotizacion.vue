@@ -11,7 +11,7 @@
     <div class="text-md-left font-italic body-2">
       <v-card>
         <v-row>
-          <v-col cols="6">
+          <v-col cols="8">
 
               <v-data-table
                 dense
