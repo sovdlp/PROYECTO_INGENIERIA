@@ -3,20 +3,22 @@
     <v-footer dark padless>
       <v-card class="flex" flat tile>
         <v-card-title class="teal">
-            <strong class="subheading">
-                Mantente conectado a nuestras redes sociales!
-            </strong>
+          <strong class="subheading">
+            Mantente conectado a nuestras redes sociales!
+          </strong>
           <v-spacer />
-            <v-btn v-for="icon in icons" :key="icon" class="mx-4" dark icon>
-              <v-icon size="30px">
-                {{ icon }}
-              </v-icon>
-            </v-btn>
-
+          <v-btn v-for="icon in icons" :key="icon" class="mx-4" dark icon>
+            <v-icon size="30px">
+              {{ icon }}
+            </v-icon>
+          </v-btn>
         </v-card-title>
 
         <v-card-text class="py-2 white--text text-center">
-          {{ new Date().getFullYear() }} — <strong>Ingenieria S.A.</strong>
+          {{ new Date().getFullYear() }} —
+          <strong
+            >Copyright © - MisiónTIC2022 UTP P62-3 - All Rights Reserved</strong
+          >
         </v-card-text>
       </v-card>
     </v-footer>

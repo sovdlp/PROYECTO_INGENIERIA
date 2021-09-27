@@ -7,16 +7,20 @@
       <a href="http://127.0.0.1:5501/public/login.html" target="_blank"
         >Página de registro</a
       >
+      <login-form />
     </p>
+  
   <Piedepagina />
   </div>
 </template>
 
 <script>
 import Piedepagina from "@/components/piedepagina.vue";
+import LoginForm from '../components/LoginForm.vue';
 export default {
     components: {
-    Piedepagina
+    Piedepagina,
+    LoginForm
   },
   methods: {
     cuadro1() {
