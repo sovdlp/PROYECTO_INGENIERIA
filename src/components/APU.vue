@@ -2,7 +2,7 @@
     <v-container >
         <div class="text-center">
             <h1>INGENIERIA S.A.</h1>
-            <h2>Cuadro de cotización</h2>
+            <h2>Cuadro APU</h2>
             <br /><br />
         </div>
 
@@ -13,17 +13,36 @@
                 <v-row>
                     <v-col cols="2"> <v-card class="pa-2" outlined tile>Cliente: </v-card> </v-col>
                     <v-col cols="5"><v-text-field dense label="Nombre cliente " :rules="rules" hide-details="auto" ></v-text-field></v-col>
+                </v-row>
+            </v-card>
+            <br />
+            <v-card class="pa-2" outlined tile>
+                <v-row>
+                    <v-col cols="2"> <v-card class="pa-2" outlined tile>Ciudad: </v-card> </v-col>
+                    <v-col cols="5"><v-text-field dense label="Nombre proyecto" :rules="rules" hide-details="auto" ></v-text-field></v-col>
+                </v-row>
+
+                <v-row>
+                    <v-col cols="2"> <v-card class="pa-2" outlined tile>Proyecto: </v-card> </v-col>
+                    <v-col cols="5"><v-text-field dense label="Descripción " :rules="rules" hide-details="auto" ></v-text-field></v-col>
+                </v-row>
+
+                <v-row>
+                    <v-col cols="2"> <v-card class="pa-2" outlined tile>Proponente: </v-card> </v-col>
+                    <v-col cols="5"><v-text-field dense label="Fecha cotización" :rules="rules" hide-details="auto" ></v-text-field></v-col>
+                </v-row>
+            </v-card>
+            <br />
+            <br><br>
+        </div>
+        <h3 class="center"> ANALISIS DE PRECIOS UNITARIOS</h3> 
+
+        <div class="text-md-left font-italic body-2">
+            <v-card class="pa-2" outlined tile>
+                <v-row>
+                    <v-col cols="2"> <v-card class="pa-2" outlined tile>Cliente: </v-card> </v-col>
+                    <v-col cols="5"><v-text-field dense label="Nombre cliente " :rules="rules" hide-details="auto" ></v-text-field></v-col>
                     <v-col cols= "2">
-                        <v-img
-                            :src="require('../assets/logo.png')"
-                            class="my-3"
-                            contain
-                            height="100"
-                        />
-                    </v-col>
-                    <v-col cols= "2">
-                        <v-btn class= "ma-1" color="indigo" outlined small >Logo..</v-btn>
-                    </v-col>
                 </v-row>
             </v-card>
             <br />
@@ -34,36 +53,13 @@
                 </v-row>
 
                 <v-row>
-                    <v-col cols="2"> <v-card class="pa-2" outlined tile>Contenido: </v-card> </v-col>
+                    <v-col cols="2"> <v-card class="pa-2" outlined tile>Proponente: </v-card> </v-col>
                     <v-col cols="5"><v-text-field dense label="Descripción " :rules="rules" hide-details="auto" ></v-text-field></v-col>
                 </v-row>
-
-                <v-row>
-                    <v-col cols="2"> <v-card class="pa-2" outlined tile>Fecha: </v-card> </v-col>
-                    <v-col cols="5"><v-text-field dense label="Fecha cotización" :rules="rules" hide-details="auto" ></v-text-field></v-col>
-                </v-row>
-            </v-card>
-            <br />
-            <v-card class="pa-2" outlined tile>
-                <v-row>
-                    <v-col cols="2"> <v-card class="pa-2" outlined tile>Proponente: </v-card> </v-col>
-                    <v-col cols="5"><v-text-field dense label="Nombre empresa proponente " :rules="rules" hide-details="auto" ></v-text-field></v-col>
-                    <v-col cols= "2">
-                        <v-img
-                            :src="require('../assets/ingenieria_sa.png')"
-                            class="my-3"
-                            contain
-                            height="100"
-                        />
-                    </v-col>
-                    <v-col cols="2">
-                        <v-btn class= "ma-1" color="indigo" outlined small >Logo..</v-btn>
-                    </v-col>
-                </v-row>
-            </v-card>
             <br><br>
         </div>
         <div>
+
             <v-row class="text-left">
                 <v-col cols="6">    
                     <v-file-input 
