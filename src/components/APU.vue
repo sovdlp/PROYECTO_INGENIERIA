@@ -2,7 +2,7 @@
   <v-container>
     <div class="text-center">
       <h1>INGENIERIA S.A.</h1>
-      <h2>Cuadro APU</h2>
+      <h2>Análisis Precios Unitarios</h2>
       <br /><br />
     </div>
 
@@ -17,11 +17,33 @@
           <v-col cols="5"
             ><v-text-field
               dense
-              label="Nombre cliente "
+              label="Nombre Cliente"
               :rules="rules"
               hide-details="auto"
             ></v-text-field
           ></v-col>
+          <v-col cols="2">
+            <v-card class="mx-auto pa-2" outlined tile width="120">
+              <v-img
+                :src="require('../assets/logo.png')"
+                class="my-3"
+                contain
+                height="100"
+              />
+              <v-btn class="ma-1" color="indigo" outlined small>Logo..</v-btn>
+            </v-card>
+          </v-col>
+          <v-col cols="2">
+            <v-card class="mx-auto pa-2" outlined tile width="120">
+              <v-img
+                :src="require('../assets/logo.svg')"
+                class="my-3"
+                contain
+                height="100"
+              />
+              <v-btn class="ma-1" color="indigo" outlined small>Logo..</v-btn>
+            </v-card>
+          </v-col>
         </v-row>
         <v-row>
           <v-col cols="2">
@@ -30,7 +52,7 @@
           <v-col cols="5"
             ><v-text-field
               dense
-              label="Nombre proyecto"
+              label="Nombre Ciudad"
               :rules="rules"
               hide-details="auto"
             ></v-text-field
@@ -44,7 +66,7 @@
           <v-col cols="5"
             ><v-text-field
               dense
-              label="Descripción "
+              label="Nombre Proyecto"
               :rules="rules"
               hide-details="auto"
             ></v-text-field
@@ -58,7 +80,7 @@
           <v-col cols="5"
             ><v-text-field
               dense
-              label="Fecha cotización"
+              label="Nombre Proponente"
               :rules="rules"
               hide-details="auto"
             ></v-text-field
@@ -68,168 +90,180 @@
       <br />
       <br /><br />
     </div>
-    <h3 class="center">ANALISIS DE PRECIOS UNITARIOS</h3>
-
-    <div class="text-md-left font-italic body-2">
-      <v-card class="pa-2" outlined tile>
-        <v-row>
-          <v-col cols="2">
-            <v-card class="pa-2" outlined tile>Cliente: </v-card>
-          </v-col>
-          <v-col cols="5"
-            ><v-text-field
-              dense
-              label="Nombre cliente "
-              :rules="rules"
-              hide-details="auto"
-            ></v-text-field
-          ></v-col>
-        </v-row>
-      </v-card>
-      <br />
-      <v-card class="pa-2" outlined tile>
-        <v-row>
-          <v-col cols="2">
-            <v-card class="pa-2" outlined tile>Proyecto: </v-card>
-          </v-col>
-          <v-col cols="5"
-            ><v-text-field
-              dense
-              label="Nombre proyecto"
-              :rules="rules"
-              hide-details="auto"
-            ></v-text-field
-          ></v-col>
-        </v-row>
-
-        <v-row>
-          <v-col cols="2">
-            <v-card class="pa-2" outlined tile>Proponente: </v-card>
-          </v-col>
-          <v-col cols="5"
-            ><v-text-field
-              dense
-              label="Descripción "
-              :rules="rules"
-              hide-details="auto"
-            ></v-text-field
-          ></v-col>
-        </v-row>
-      </v-card>
-      <br /><br />
-    </div>
+    <v-card class="mx-auto mt-5">
+        <v-data-table
+          dense
+          :headers="totales"
+          hide-default-footer
+          :items="totales"
+          item-key="item"
+          class="elevation-1"
+        ></v-data-table>
+      </v-card><br>
+      
+    <h3 class="center">II. ANALISIS DE PRECIOS UNITARIOS</h3>
     <div>
-      <v-row class="text-left">
-        <v-col cols="6">
-          <v-file-input
-            show-size
-            truncate-length="40"
-            accept=".xls, .csv"
-            placeholder="Seleccione un archivo"
-            label="Cuadro de cantidades"
-          >
-          </v-file-input>
-        </v-col>
-        <v-col cols="4">
-          <v-btn class="ma-2" color="indigo" outlined small
-            >Cargar archivo cantidades</v-btn
-          >
-        </v-col>
-      </v-row>
+      <v-card class="mx-auto mt-5">
+        <v-data-table
+          dense
+          :headers="columnas"
+          hide-default-footer
+          :items="items"
+          item-key="item"
+          class="elevation-1"
+        ></v-data-table>
+      </v-card>
+      <v-card class="mx-auto mt-5">
+        <v-data-table
+          dense
+          :headers="melec"
+          hide-default-footer
+          :items="electrico"
+          item-key="item"
+          class="elevation-1"
+        ></v-data-table>
+      </v-card>
+      <v-card class="mx-auto mt-5">
+        <v-data-table
+          dense
+          :headers="columnas4"
+          hide-default-footer
+          :items="items2"
+          item-key="item"
+          class="elevation-1"
+        ></v-data-table>
+      </v-card>
+      <v-card class="mx-auto mt-5">
+        <v-data-table
+          dense
+          :headers="mocivil"
+          hide-default-footer
+          :items="obracivil"
+          item-key="item"
+          class="elevation-1"
+        ></v-data-table>
+      </v-card>
+      <v-card class="mx-auto mt-5">
+        <v-data-table
+          dense
+          :headers="columnas4"
+          hide-default-footer
+          :items="items2"
+          item-key="item"
+          class="elevation-1"
+        ></v-data-table>
+      </v-card>
+      <v-card class="mx-auto mt-5">
+        <v-row>
+          <v-col cols="10">
+            <p class="text-end">SUBTOTAL</p>
+          </v-col>
+          <v-col cols="2">
+            <p class="end">$ 150.000</p>
+          </v-col>
+        </v-row> </v-card
+      ><br />
 
-      <v-data-table
-        dense
-        :headers="headers"
-        :items="items"
-        item-key="item"
-        class="elevation-1"
-      ></v-data-table>
+      <v-card class="mx-auto mt-5">
+        <v-data-table
+          dense
+          :headers="equipo"
+          hide-default-footer
+          :items="equipo"
+          item-key="item"
+          class="elevation-1"
+        ></v-data-table>
+      </v-card>
+      <v-card class="mx-auto mt-5">
+        <v-data-table
+          dense
+          :headers="columnas4"
+          hide-default-footer
+          :items="items2"
+          item-key="item"
+          class="elevation-1"
+        ></v-data-table>
+      </v-card>
+      <v-card class="mx-auto mt-5">
+        <v-row>
+          <v-col cols="10">
+            <p class="text-end">SUBTOTAL</p>
+          </v-col>
+          <v-col cols="2">
+            <p class="end">$ 150.000</p>
+          </v-col>
+        </v-row> </v-card
+      ><br />
 
-      <v-row>
-        <v-col cols="8">
-          <p class="left">SUBTOTAL COSTOS DIRECTOS</p>
-        </v-col>
-        <v-col cols="4">
-          <p class="right">$ 150.000</p>
-        </v-col>
-      </v-row>
+      <v-card class="mx-auto mt-5">
+        <v-data-table
+          dense
+          :headers="transporte"
+          hide-default-footer
+          :items="transporte"
+          item-key="item"
+          class="elevation-1"
+        ></v-data-table>
+      </v-card>
+      <v-card class="mx-auto mt-5">
+        <v-data-table
+          dense
+          :headers="columnas4"
+          hide-default-footer
+          :items="items2"
+          item-key="item"
+          class="elevation-1"
+        ></v-data-table>
+      </v-card>
+      <v-card class="mx-auto mt-5">
+        <v-row>
+          <v-col cols="10">
+            <p class="text-end">SUBTOTAL</p>
+          </v-col>
+          <v-col cols="2">
+            <p class="end">$ 150.000</p>
+          </v-col>
+        </v-row> </v-card
+      ><br />
+
+      <v-card class="mx-auto mt-5">
+        <v-data-table
+          dense
+          :headers="manoobra"
+          hide-default-footer
+          :items="manoobra"
+          item-key="item"
+          class="elevation-1"
+        ></v-data-table>
+      </v-card>
+      <v-card class="mx-auto mt-5">
+        <v-data-table
+          dense
+          :headers="columnas4"
+          hide-default-footer
+          :items="items2"
+          item-key="item"
+          class="elevation-1"
+        ></v-data-table>
+      </v-card>
+      <v-card class="mx-auto mt-5">
+        <v-row>
+          <v-col cols="10">
+            <p class="text-end">SUBTOTAL</p>
+          </v-col>
+          <v-col cols="2">
+            <p class="end">$ 150.000</p>
+          </v-col>
+        </v-row> </v-card
+      ><br />
+
+
     </div>
-    <div>
-      <h3 class="center">III. CUADRO DE COSTOS INDIRECTOS</h3>
-      <v-row class="text-left">
-        <v-col cols="6">
-          <v-file-input
-            show-size
-            truncate-length="40"
-            accept=".xls, .csv"
-            placeholder="Seleccione un archivo"
-            label="Cuadro APU"
-          >
-          </v-file-input>
-        </v-col>
-        <v-col cols="4">
-          <v-btn class="ma-2" color="indigo" outlined small
-            >Cargar archivo A.I.U.</v-btn
-          >
-        </v-col>
-      </v-row>
-      <v-data-table
-        dense
-        :headers="headers2"
-        :items="indirectos"
-        :single-select="singleSelect"
-        item-key="descripcion"
-        show-select
-        class="elevation-1"
-        hide-default-footer
-      ></v-data-table>
-
-      <v-row>
-        <v-col cols="8">
-          <p class="left">SUBTOTAL COSTOS INDIRECTOS</p>
-        </v-col>
-        <v-col cols="4">
-          <p class="right">$ 150.000</p>
-        </v-col>
-      </v-row>
-
-      <br />
-      <h3 class="center">IV. CUADRO DE IMPUESTOS</h3>
-      <v-data-table
-        v-model="selected"
-        dense
-        :headers="headers2"
-        :items="impuestos"
-        :single-select="singleSelect"
-        item-key="descripcion"
-        show-select
-        class="elevation-1"
-        hide-default-footer
-      ></v-data-table>
-
-      <v-row>
-        <v-col cols="8">
-          <p class="left">SUBTOTAL IMPUESTOS</p>
-        </v-col>
-        <v-col cols="4">
-          <p class="right">$ 150.000</p>
-        </v-col>
-      </v-row>
-    </div>
-    <v-row>
-      <v-col cols="8">
-        <h3 class="left">VALOR TOTAL COTIZACION</h3>
-      </v-col>
-      <v-col cols="4">
-        <h3 class="right">$ 150.000</h3>
-      </v-col>
-    </v-row>
-    <br /><br />
   </v-container>
 </template>
 
 <script>
-import Items from "@/components/items.vue";
+import store from "../store/tbl_items.js";
 
 export default {
   data: () => ({
@@ -237,61 +271,341 @@ export default {
       (value) => !!value || "Requerido.",
       (value) => (value && value.length >= 3) || "Min 3 caracteres",
     ],
+    items: store.items,
+    indirectos: store.indirectos,
+    impuestos: store.impuestos,
+    cotizacion: store.cotizacion,
 
-    indirectos: [
+    melec: [
       {
-        descripcion: "Administración",
-        porcentaje: "10%",
-        vrindirecto: "$42345",
+        text: "I.",
+        align: "center",
+        sortable: false,
+        value: "item",
+        class: "grey",
+        width: "7%",
+        divider: "true",
       },
       {
-        descripcion: "Imprevistos",
-        porcentaje: "5%",
-        vrindirecto: "$9876",
+        text: "Materiales Electricos",
+        align: "center",
+        sortable: false,
+        value: "item",
+        class: "grey",
+        width: "50%",
+        divider: "true",
+      },
+    ],
+    mocivil: [
+      {
+        text: "I.I",
+        align: "center",
+        sortable: false,
+        value: "item",
+        class: "grey",
+        width: "7%",
+        divider: "true",
       },
       {
-        descripcion: "Utilidades",
-        porcentaje: "7%",
-        vrindirecto: "$15645",
+        text: "Materiales Obra Civil",
+        align: "center",
+        sortable: false,
+        value: "item",
+        class: "grey",
+        width: "50%",
+        divider: "true",
+      },
+    ],
+    equipo: [
+      {
+        text: "II.",
+        align: "center",
+        sortable: false,
+        value: "item",
+        class: "grey",
+        width: "7%",
+        divider: "true",
+      },
+      {
+        text: "Equipo",
+        align: "center",
+        sortable: false,
+        value: "item",
+        class: "grey",
+        width: "50%",
+        divider: "true",
       },
     ],
 
-    impuestos: [
+    transporte: [
       {
-        descripcion: "IVA/Utilidades",
-        porcentaje: "19%",
-        vrindirecto: "$12345",
+        text: "III.",
+        align: "center",
+        sortable: false,
+        value: "item",
+        class: "grey",
+        width: "7%",
+        divider: "true",
       },
       {
-        descripcion: "IVA Pleno",
-        porcentaje: "19%",
-        vrindirecto: "$12345",
+        text: "Transporte",
+        align: "center",
+        sortable: false,
+        value: "item",
+        class: "grey",
+        width: "50%",
+        divider: "true",
       },
     ],
-    selected: [],
-    headers: [
-      { text: "Ítem", align: "start", sortable: false, value: "item" },
-      { text: "Descripción", sortable: false, value: "calories" },
-      { text: "Unidad", sortable: false, value: "fat" },
-      { text: "Cantidad", sortable: false, value: "carbs" },
-      { text: "Valor unit", sortable: false, value: "protein" },
-      { text: "Valor total", sortable: false, value: "iron" },
+    manoobra: [
+      {
+        text: "IV.",
+        align: "center",
+        sortable: false,
+        value: "item",
+        class: "grey",
+        width: "7%",
+        divider: "true",
+      },
+      {
+        text: "Mano de obra",
+        align: "center",
+        sortable: false,
+        value: "item",
+        class: "grey",
+        width: "50%",
+        divider: "true",
+      },
     ],
 
-    headers2: [
+    totales: [
       {
-        text: "Descripción",
+        text: "MATERIALES",
+        align: "center",
+        sortable: false,
+        value: "item",
+        class: "grey",
+        width: "7%",
+        divider: "true",
+      },
+      {
+        text: "EQUIPO",
+        align: "start",
+        sortable: false,
+        value: "descripcion",
+        class: "grey",
+        width: "40%",
+        divider: "true",
+      },
+      {
+        text: "TRANSPORTE",
+        align: "center",
+        sortable: false,
+        value: "unidad",
+        class: "grey",
+        width: "7%",
+        divider: "true",
+      },
+      {
+        text: "MANO DE OBRA",
+        align: "center",
+        sortable: false,
+        value: "cantidad",
+        class: "grey",
+        width: "7%",
+        divider: "true",
+      },
+    ],
+
+    columnas: [
+      {
+        text: "ÍTEM",
+        align: "center",
+        sortable: false,
+        value: "item",
+        class: "grey",
+        width: "7%",
+        divider: "true",
+      },
+      {
+        text: "DESCRIPCIÓN",
+        align: "start",
+        sortable: false,
+        value: "descripcion",
+        class: "grey",
+        width: "50%",
+        divider: "true",
+      },
+      {
+        text: "UNIDAD",
+        align: "center",
+        sortable: false,
+        value: "unidad",
+        class: "grey",
+        width: "7%",
+        divider: "true",
+      },
+      {
+        text: "CANTIDAD",
+        align: "center",
+        sortable: false,
+        value: "cantidad",
+        class: "grey",
+        width: "7%",
+        divider: "true",
+      },
+      {
+        text: "VALOR ITEM",
+        align: "right",
+        sortable: false,
+        value: "valorunit",
+        class: "grey",
+        width: "7%",
+        divider: "true",
+      },
+    ],
+
+    columnas2: [
+      {
+        text: "DESCRIPCIÓN",
         sortable: false,
         align: "start",
         value: "descripcion",
+        width: "20%",
+        class: "grey",
+        divider: "true",
       },
-      { text: "Porcentaje", sortable: false, value: "porcentaje" },
-      { text: "Valor Total", sortable: false, value: "vrindirecto" },
+      {
+        text: "PORCENTAJE",
+        sortable: false,
+        value: "porcentaje",
+        width: "10%",
+        align: "center",
+        class: "grey",
+        divider: "true",
+      },
+      {
+        text: "VALOR TOTAL",
+        sortable: false,
+        value: "vrindirecto",
+        align: "end",
+        class: "grey",
+      },
+    ],
+    columnas3: [
+      {
+        text: "Cliente:",
+        align: "start",
+        value: "cliente",
+      },
+      {
+        text: "Proyecto:",
+        align: "start",
+        value: "proyecto",
+      },
+      {
+        text: "Contiene:",
+        align: "start",
+        value: "contenido",
+      },
+      {
+        text: "Fecha:",
+        align: "start",
+        value: "fecha",
+      },
+      {
+        text: "Ciudad:",
+        align: "start",
+        value: "ciudad",
+      },
+      {
+        text: "# COT:",
+        align: "start",
+        value: "numero_cot",
+      },
+    ],
+
+    columnas4: [
+      {
+        text: "COD. MATERIALES",
+        align: "center",
+        sortable: false,
+        value: "item",
+        class: "grey",
+        width: "7%",
+        divider: "true",
+      },
+      {
+        text: "DESCRIPCIÓN",
+        align: "start",
+        sortable: false,
+        value: "descripcion",
+        class: "grey",
+        width: "40%",
+        divider: "true",
+      },
+      {
+        text: "UNIDAD",
+        align: "center",
+        sortable: false,
+        value: "unidad",
+        class: "grey",
+        width: "7%",
+        divider: "true",
+      },
+      {
+        text: "CANTIDAD",
+        align: "center",
+        sortable: false,
+        value: "cantidad",
+        class: "grey",
+        width: "7%",
+        divider: "true",
+      },
+      {
+        text: "VALOR UNIARIO",
+        align: "right",
+        sortable: false,
+        value: "valorunit",
+        class: "grey",
+        width: "7%",
+        divider: "true",
+      },
+      {
+        text: "VALOR PARCIAL",
+        align: "right",
+        sortable: false,
+        value: "valorunit",
+        class: "grey",
+        width: "7%",
+        divider: "true",
+      },
+      {
+        text: "",
+        align: "right",
+        sortable: false,
+        value: "valorunit",
+        class: "light",
+        width: "10%",
+        divider: "true",
+      },
+      {
+        text: "CANTIDAD TOTAL",
+        align: "right",
+        sortable: false,
+        value: "valorunit",
+        class: "grey",
+        width: "7%",
+        divider: "true",
+      },
     ],
   }),
-
-  components: {
-    Items,
+  methods: {
+    editarCuadro() {
+      console.log("editar cotizacion...");
+      this.$router.push("/editarcuadro");
+    },
   },
+  components: {},
 };
 </script>

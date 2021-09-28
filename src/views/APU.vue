@@ -8,15 +8,15 @@
         >Elaboración de APU</a
       >
     </p>
-    <apu/>
+    <APU />
     <Piedepagina />
   </div>
 </template>
 
 <script>
-import apu from "@/components/APU.vue";
+//import apu from "@/components/APU.vue";
 import Piedepagina from "@/components/piedepagina.vue";
-import APU from '../components/APU.vue';
+import APU from '@/components/APU.vue';
 export default {
     components: {
     APU,
