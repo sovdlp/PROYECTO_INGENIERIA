@@ -3,7 +3,7 @@
     <h1>Tabla desde base de datos</h1>
     <ul>
       <li v-for="item in itemscotizacion" :key="item._id"> <!--item.Name-->
-          {{ item.descripcion }} {{ item.unidad }} - Edad:{{ item.cantidad }}
+          {{item.itemId}} - {{ item.descripcion }} - {{ item.unidad }} - {{ item.cantidad }}
           <!--{{ item.Name }} - {{ item.Age }}-->
       </li>
     </ul>
@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import store from "../store/index.js";
+import store from '../store/index';
 
 export default {
     data: () => {
@@ -23,7 +23,7 @@ export default {
         store.dispatch("getItemscotizacion");
     },
     computed: {
-        items: () => {
+        itemscotizacion: () => {
             return store.state.itemscotizacion;
         }
     }

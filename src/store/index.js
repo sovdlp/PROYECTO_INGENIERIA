@@ -5,19 +5,19 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    cotitems: []
+    itemscotizacion: []
   },
   mutations: {
-    setCotItems(state, payload) {
-      state.cotitems = payload;
+    setItemscotizacion(state, payload) {
+      state.itemscotizacion = payload;
     }
   },
   actions: {
-    async getCotItems({ commit }) {
+    async getItemscotizacion({ commit }) {
       const peticion = await fetch('http://localhost:3000/cotitems/');
       const data = await peticion.json();
       console.log(data);
-      commit('setCotItems', data);
+      commit('setItemscotizacion', data);
     }
   },
   modules: {
