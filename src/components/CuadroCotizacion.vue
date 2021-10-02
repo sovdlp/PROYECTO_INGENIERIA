@@ -73,7 +73,7 @@
             small
             @click="editarCuadro()"
           >
-            >Edición</v-btn
+            Edición</v-btn
           >
         </v-col>
       </v-row>

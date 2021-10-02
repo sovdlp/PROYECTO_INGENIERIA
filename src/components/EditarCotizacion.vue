@@ -91,8 +91,10 @@
 
 <script>
 import store from "../store/tbl_items.js";
+import storeitems from "../store/index.js";
 
 export default {
+
   data: () => ({
     dialog: false,
     dialogDelete: false,
@@ -180,6 +182,7 @@ export default {
     formTitle() {
       return this.editedIndex === -1 ? "Nuevo Item" : "Editar Item";
     },
+
   },
 
   watch: {
@@ -191,10 +194,9 @@ export default {
     },
   },
 
-  created() {
+  created: () => {
     this.initialize();
   },
-
   methods: {
     initialize() {
       this.items = store.items;

@@ -23,10 +23,22 @@ const routes = [{
             import ( /* webpackChunkName: "cuadro" */ '../views/Cuadro.vue')
     },
     {
+        path: '/editarcuadro',
+        name: 'EditarCuadro',
+        component: () =>
+            import ( /* webpackChunkName: "editarcuadro" */ '../components/EditarCotizacion.vue')
+    },    
+    {
         path: '/cuadroapu',
         name: 'APU',
         component: () =>
             import ( /* webpackChunkName: "APU" */ '../views/APU.vue')
+    },
+    {
+        path: '/tabla',
+        name: 'tabla',
+        component: () =>
+            import ( /* webpackChunkName: "APU" */ '../views/Tabla.vue')
     },
     {
         path: '/cuadromateriales',
