@@ -14,7 +14,7 @@ export default new Vuex.Store({
   },
   actions: {
     async getItemscotizacion({ commit }) {
-      const peticion = await fetch('http://localhost:3000/cotitems/');
+      const peticion = await fetch('http://localhost:3000/itemscotizacion/');
       const data = await peticion.json();
       console.log(data);
       commit('setItemscotizacion', data);
