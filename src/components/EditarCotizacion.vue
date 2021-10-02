@@ -1,7 +1,7 @@
 <template>
   <v-container>
     <v-btn color="primary" @click="salir"> Salir </v-btn>
-    <v-data-table :headers="columnas" :items="items" class="elevation-1">
+    <v-data-table :headers="columnas" :items="itemscotizacion" class="elevation-1">
       <template v-slot:top>
         <v-toolbar flat>
           <v-toolbar-title>Editar Cantidades</v-toolbar-title>
@@ -94,7 +94,6 @@ import store from "../store/tbl_items.js";
 import storeitems from "../store/index.js";
 
 export default {
-
   data: () => ({
     dialog: false,
     dialogDelete: false,
@@ -179,10 +178,12 @@ export default {
   }),
 
   computed: {
+    itemscotizacion: () => {
+      return storeitems.state.itemscotizacion;
+    },
     formTitle() {
       return this.editedIndex === -1 ? "Nuevo Item" : "Editar Item";
     },
-
   },
 
   watch: {
@@ -195,6 +196,7 @@ export default {
   },
 
   created: () => {
+    storeitems.dispatch("getItemscotizacion");
     this.initialize();
   },
   methods: {

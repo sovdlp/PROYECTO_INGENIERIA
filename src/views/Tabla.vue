@@ -2,15 +2,16 @@
   <div>
     <h1>Tabla desde base de datos</h1>
     <ul>
-      <li v-for="item in itemscotizacion" :key="item._id"> <!--item.Name-->
+      <li v-for="item in itemscotizacion" :key="item._id">
           {{item.itemId}} - {{ item.descripcion }} - {{ item.unidad }} - {{ item.cantidad }} - {{item.valorunit}} - {{item.valortotal}}
-          <!--{{ item.Name }} - {{ item.Age }}-->
+          
       </li>
     </ul>
   </div>
 </template>
 
 <script>
+
 import store from '../store/index';
 
 export default {
