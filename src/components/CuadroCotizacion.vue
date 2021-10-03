@@ -12,16 +12,14 @@
       <v-card>
         <v-row>
           <v-col cols="8">
-
-              <v-data-table
-                dense
-                disable-sort
-                :headers="columnas3"
-                hide-default-footer
-                :items="cotizacion"
-                class=" my-2 elevation-1"
-              ></v-data-table>
-
+            <v-data-table
+              dense
+              disable-sort
+              :headers="columnas3"
+              hide-default-footer
+              :items="cotizacion"
+              class="my-2 elevation-1"
+            ></v-data-table>
           </v-col>
           <v-col cols="1">
             <v-card class="mx-auto pa-2" outlined tile width="120">
@@ -82,8 +80,8 @@
         <v-data-table
           dense
           :headers="columnas"
-          :items="items"
-          item-key="item"
+          :items="itemscotizacion"
+          item-key="itemId"
           class="elevation-1"
         ></v-data-table>
       </v-card>
@@ -175,6 +173,7 @@
 
 <script>
 import store from "../store/tbl_items.js";
+import storeitems from "../store/index.js";
 
 export default {
   data: () => ({
@@ -301,6 +300,7 @@ export default {
       },
     ],
   }),
+
   methods: {
     editarCuadro() {
       console.log("editar cotizacion...");
@@ -308,5 +308,15 @@ export default {
     },
   },
   components: {},
+
+  computed: {
+    itemscotizacion: () => {
+      return storeitems.state.itemscotizacion;
+    },
+  },
+  
+  created: () => {
+    storeitems.dispatch("getItemscotizacion");
+  },
 };
 </script>

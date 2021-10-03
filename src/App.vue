@@ -2,11 +2,11 @@
   <v-app>
     <div id="app">
       <div id="nav">
-        <router-link to="/">Inicio</router-link> |
-        <router-link to="/ingreso">Ingreso</router-link> |
+        <router-link to="/">Ingreso</router-link> |
+        <router-link to="/presentacion">Inicio</router-link> |
         <router-link to="/cuadrocotiza">Cuadro</router-link> |
-        <router-link to="/cuadroapu">APU</router-link> |
-        <router-link to="/cuadromateriales">Materiales</router-link> |
+<!--        <router-link to="/cuadroapu">APU</router-link> | 
+        <router-link to="/cuadromateriales">Materiales</router-link> | -->
         <router-link to="/about">About</router-link>
       </div>
       <router-view />
