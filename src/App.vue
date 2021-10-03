@@ -3,8 +3,8 @@
     <div id="app">
       <div id="nav">
         <router-link to="/">Ingreso</router-link> |
-        <router-link to="/presentacion">Inicio</router-link> |
-        <router-link to="/cuadrocotiza">Cuadro</router-link> |
+        <router-link to="/presentacion"  tag="button" :disabled="false">Inicio</router-link> |
+        <router-link  to="/cuadrocotiza" tag="button" :disabled="false"> Cuadro</router-link> |
 <!--        <router-link to="/cuadroapu">APU</router-link> | 
         <router-link to="/cuadromateriales">Materiales</router-link> | -->
         <router-link to="/about">About</router-link>

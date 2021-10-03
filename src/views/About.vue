@@ -1,6 +1,5 @@
 <template>
   <div class="about">
-    <v-btn @click="inicio">ir a Inicio</v-btn>
     <h2>APLICACION CREADA POR EL GRUPO 62-3 MISION TIC 2022</h2>
 
 

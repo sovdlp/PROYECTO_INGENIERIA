@@ -26,6 +26,7 @@
                 <v-btn 
                     color="primary"
                     :disabled="!isValid"
+                    
                     >Login
                     <v-form v-model="isValid"></v-form>
                 </v-btn>

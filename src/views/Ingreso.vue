@@ -1,6 +1,6 @@
 <template>
   <div class="ingreso">
-    <v-btn @click="cuadro1">ir a Cuadro Cotizacion</v-btn>
+   <!-- <v-btn @click="cuadro1">ir a Cuadro Cotizacion</v-btn> -->
     <h2>FORMULARIO DE INGRESO</h2>
     <p class="subheading font-weight-regular">
       Registrarse--> 
