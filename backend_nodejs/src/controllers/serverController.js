@@ -1,5 +1,4 @@
-const itemcotizacion = require('../models/itemcotizacion'); //const person = require('../models/person');
-
+const itemcotizacion = require('../models/itemcotizacion');
 
 class ServerController {
     constructor() {}
@@ -15,24 +14,9 @@ class ServerController {
     }
 
     updateItem(req, res) {
-        let {
-            itemId,
-            descripcion,
-            unidad,
-            cantidad,
-            valorunit,
-            valortotal
-        } = req.body; 
-        let obj = {
-            descripcion,
-            unidad,
-            cantidad,
-            valorunit,
-            valortotal
-        }; 
-        itemcotizacion.findByIdAndUpdate(itemId, {
-            $set: obj
-        }, (error, data) => {
+        let {itemId, descripcion, unidad, cantidad, valorunit, valortotal } = req.body; 
+        let obj = { descripcion, unidad, cantidad, valorunit, valortotal }; 
+        itemcotizacion.findByIdAndUpdate(itemId, { $set: obj}, (error, data) => {
             if (error) {
                 res.status(500).send();
             } else {
@@ -42,11 +26,8 @@ class ServerController {
     }
 
     deleteItem(req, res) {
-        let {
-            itemId
-        } = req.body; //let { id } = req.body;
-        itemcotizacion.findByIdAndDelete(itemId, (error, data) => {
-            /*person.findByIdAndDelete(id, (error, data) => { */
+        let { id } = req.body;
+        itemcotizacion.findByIdAndDelete(id, (error, data) => {
             if (error) {
                 res.status(500).send();
             } else {
@@ -56,9 +37,8 @@ class ServerController {
     }
 
     getItem(req, res) {
-        let itemId = req.params.id;
-        itemcotizacion.findById(itemId, (error, data) => {
-            /*person.findById(id, (error, data) => { */
+        let id = req.params.id;
+        itemcotizacion.findById(id, (error, data) => {
             if (error) {
                 res.status(500).send();
             } else {
@@ -69,7 +49,6 @@ class ServerController {
 
     getAllItem(req, res) {
         itemcotizacion.find((error, data) => {
-            /*person.find((error, data) => {*/
             if (error) {
                 res.status(500).send();
             } else {

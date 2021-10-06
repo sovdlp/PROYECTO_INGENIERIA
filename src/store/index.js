@@ -13,14 +13,26 @@ export default new Vuex.Store({
     }
   },
   actions: {
-    async getItemscotizacion({ commit }) {
-      const peticion = await fetch('http://localhost:3000/itemscotizacion/');
+    async getItemscotizacion({
+      commit
+    }) {
+      const peticion = await fetch('http://localhost:3000/itemscotizacion');
       const data = await peticion.json();
       console.log(data);
       commit('setItemscotizacion', data);
+    },
+
+    async deleteItemcotizacion({ commit}, itemscotizacion) {
+      const peticion = await fetch('http://localhost:3000/itemscotizacion', {
+        method: 'DELETE',
+        headers: {
+          'Content-Type' : 'application/json'
+        },
+        body: JSON.stringify(itemscotizacion)
+      });
     }
   },
   modules: {
-    
+
   }
 })
