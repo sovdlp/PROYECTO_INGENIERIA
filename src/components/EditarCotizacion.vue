@@ -206,7 +206,7 @@ export default {
       this.items = store.items;
     },
 
-    editItem(item) {
+/*    editItem(item) {
       this.editedIndex = this.items.indexOf(item);
       this.editedItem = Object.assign({}, item);
       this.dialog = true;
@@ -217,6 +217,7 @@ export default {
       this.editedItem = Object.assign({}, item);
       this.dialogDelete = true;
     },
+*/
 
     deleteItemConfirm() {
       this.items.splice(this.editedIndex, 1);

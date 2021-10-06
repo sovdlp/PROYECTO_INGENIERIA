@@ -4,7 +4,7 @@ const itemcotizacion = require('../models/itemcotizacion'); //const person = req
 class ServerController {
     constructor() {}
 
-    register(req, res) {
+    registerItem(req, res) {
         itemcotizacion.create(req.body, (error, data) => {
             if (error) {
                 res.status(500).send();
@@ -14,7 +14,7 @@ class ServerController {
         });
     }
 
-    update(req, res) {
+    updateItem(req, res) {
         let {
             itemId,
             descripcion,
@@ -41,7 +41,7 @@ class ServerController {
         })
     }
 
-    deleteUser(req, res) {
+    deleteItem(req, res) {
         let {
             itemId
         } = req.body; //let { id } = req.body;
@@ -55,7 +55,7 @@ class ServerController {
         })
     }
 
-    getUsers(req, res) {
+    getItem(req, res) {
         let itemId = req.params.id;
         itemcotizacion.findById(itemId, (error, data) => {
             /*person.findById(id, (error, data) => { */
@@ -67,7 +67,7 @@ class ServerController {
         })
     }
 
-    getAllUsers(req, res) {
+    getAllItem(req, res) {
         itemcotizacion.find((error, data) => {
             /*person.find((error, data) => {*/
             if (error) {

@@ -4,7 +4,7 @@
     <ul>
       <li v-for="item in itemscotizacion" :key="item._id">
           {{item.itemId}} - {{ item.descripcion }} - {{ item.unidad }} - {{ item.cantidad }} - {{item.valorunit}} - {{item.valortotal}}
-          
+          <v-btn x-small> Editar </v-btn>
       </li>
     </ul>
   </div>
