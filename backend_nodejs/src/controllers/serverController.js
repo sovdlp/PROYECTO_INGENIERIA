@@ -14,9 +14,9 @@ class ServerController {
     }
 
     updateItem(req, res) {
-        let {itemId, descripcion, unidad, cantidad, valorunit, valortotal } = req.body; 
-        let obj = { descripcion, unidad, cantidad, valorunit, valortotal }; 
-        itemcotizacion.findByIdAndUpdate(itemId, { $set: obj}, (error, data) => {
+        let {id, itemId, descripcion, unidad, cantidad, valorunit, valortotal } = req.body; 
+        let obj = { itemId, descripcion, unidad, cantidad, valorunit, valortotal }; 
+        itemcotizacion.findByIdAndUpdate(id, { $set: obj}, (error, data) => {
             if (error) {
                 res.status(500).send();
             } else {

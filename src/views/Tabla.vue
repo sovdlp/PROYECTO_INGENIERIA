@@ -4,19 +4,35 @@
 
     <!-- Inicio formulario para crear los items -->
     <v-container>
-
       <v-form ref="form" v-model="valid" lazy-validation>
         <v-text-field v-model="itemId" label="Ítem"></v-text-field>
         <v-text-field v-model="descripcion" label="Descripción"></v-text-field>
         <v-text-field v-model="unidad" label="Unidad"></v-text-field>
-        <v-text-field v-model="cantidad" label="Cantidad" ></v-text-field>
+        <v-text-field v-model="cantidad" label="Cantidad"></v-text-field>
 
         <v-btn
+          v-if="id == null"
           x-small
           color="primary"
           class="mr-4"
           @click="insertarItemcotizacion()"
-          >Agregar</v-btn
+          >Agregar Item</v-btn
+        >
+        <v-btn
+          v-if="id!=null"
+          x-small
+          color="error"
+          class="mr-4"
+          @click="editarItemcotizacion(id)"
+          >Actualizar</v-btn
+        >
+        <v-btn
+          v-if="id != null"
+          x-small
+          color="primary"
+          class="mr-4"
+          @click="btnCancelar()"
+          >Cancelar</v-btn
         >
         <v-btn
           :disabled="!valid"
@@ -43,7 +59,16 @@
       <li v-for="item in itemscotizacion" :key="item._id">
         {{ item.itemId }} - {{ item.descripcion }} - {{ item.unidad }} -
         {{ item.cantidad }} - {{ item.valorunit }}
-        <v-btn x-small class="" @click="eliminarItemcotizacion(item._id)">
+        <v-btn x-small color="primary" class="mr-4" @click="btnActualizar(item._id, item.itemId, item.descripcion, item.unidad, item.cantidad )">
+          Editar
+        </v-btn>
+        
+        <v-btn
+          color="error"
+          x-small
+          class=""
+          @click="eliminarItemcotizacion(item._id)"
+        >
           Eliminar
         </v-btn>
       </li>
@@ -58,19 +83,10 @@ export default {
   data: () => ({
     valid: true,
     itemId: "",
-
     descripcion: "",
-
     unidad: "",
-
     cantidad: "",
-
-    return: {
-      itemId: null,
-      descripcion: null,
-      unidad: null,
-      cantidad: null,
-    },
+    id: null,
   }),
   methods: {
     eliminarItemcotizacion(id) {
@@ -89,12 +105,38 @@ export default {
       };
       store.dispatch("setItemscotizacion", obj).then(() => {
         store.dispatch("getItemscotizacion");
-        this.itemId = "";
-        this.descripcion = "";
-        this.unidad = "";
-        this.cantidad = "";
+        this.$refs.form.reset();
       });
     },
+
+    editarItemcotizacion(id) {
+      let obj = {
+        id: id,
+        itemId: this.itemId,
+        descripcion: this.descripcion,
+        unidad: this.unidad,
+        cantidad: this.cantidad,
+      };
+      store.dispatch("editItemscotizacion", obj).then(() => {
+        store.dispatch("getItemscotizacion");
+        this.$refs.form.reset();
+        this.id = null;
+      });
+    },
+
+    btnActualizar(id, itemId, descripcion, unidad, cantidad) {
+      this.id = id;
+      this.itemId = itemId;
+      this.descripcion = descripcion;
+      this.unidad = unidad;
+      this.cantidad = cantidad;
+    },
+
+    btnCancelar() {
+      this.id = null;
+      this.$refs.form.reset();
+    },
+
     validate() {
       this.$refs.form.validate();
     },
