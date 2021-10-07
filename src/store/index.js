@@ -30,7 +30,16 @@ export default new Vuex.Store({
         },
         body: JSON.stringify(itemscotizacion)
       });
-    }
+    },
+    async setItemscotizacion({ commit }, item) {
+      const peticion = await fetch('http://localhost:3000/itemscotizacion', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(item)
+      });      
+    },    
   },
   modules: {
 

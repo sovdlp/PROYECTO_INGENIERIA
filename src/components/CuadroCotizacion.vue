@@ -81,7 +81,7 @@
           dense
           :headers="columnas"
           :items="itemscotizacion"
-          item-key="itemId"
+          item-key= itemId
           class="elevation-1"
         ></v-data-table>
       </v-card>
@@ -120,9 +120,9 @@
           :headers="columnas2"
           :items="indirectos"
           :single-select="false"
-          item-key="descripcion"
+          item-key= descripcion
           show-select
-          class="elevation-1"
+          class= elevation-1
           hide-default-footer
         ></v-data-table>
       </v-card>
@@ -191,7 +191,7 @@ export default {
         text: "ÍTEM",
         align: "center",
         sortable: false,
-        value: "item",
+        value: "itemId",
         class: "grey",
         width: "7%",
         divider: "true",

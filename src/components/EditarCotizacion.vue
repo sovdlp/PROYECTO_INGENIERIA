@@ -1,13 +1,18 @@
 <template>
   <v-container>
     <v-btn color="primary" @click="salir"> Salir </v-btn>
-    <v-data-table :headers="columnas" :items="itemscotizacion" class="elevation-1">
+    <v-data-table
+      :headers="columnas"
+      :items="itemscotizacion"
+      class="elevation-1"
+    >
       <template v-slot:top>
         <v-toolbar flat>
           <v-toolbar-title>Editar Cantidades</v-toolbar-title>
           <v-divider class="mx-4" inset vertical></v-divider>
           <v-spacer></v-spacer>
 
+          <!-- Inicio formulario para crear los items -->
           <v-dialog v-model="dialog" max-width="500px">
             <template v-slot:activator="{ on, attrs }">
               <v-btn color="primary" dark class="mb-2" v-bind="attrs" v-on="on">
@@ -24,25 +29,25 @@
                   <v-row>
                     <v-col cols="12" sm="6" md="4">
                       <v-text-field
-                        v-model="editedItem.item"
+                        v-model="itemId"
                         label="Ítem"
+                        placeholder="1.1"
+                        hint="numero de ítem"
                       ></v-text-field>
                     </v-col>
-
                     <v-text-field
-                      v-model="editedItem.descripcion"
+                      v-model="descripcion"
                       label="Descripción"
                     ></v-text-field>
-
                     <v-col cols="12" sm="6" md="4">
                       <v-text-field
-                        v-model="editedItem.unidad"
+                        v-model="unidad"
                         label="Unidad"
                       ></v-text-field>
                     </v-col>
                     <v-col cols="12" sm="6" md="4">
                       <v-text-field
-                        v-model="editedItem.cantidad"
+                        v-model="cantidad"
                         label="Cantidad"
                       ></v-text-field>
                     </v-col>
@@ -50,16 +55,23 @@
                   </v-row>
                 </v-container>
               </v-card-text>
-
               <v-card-actions>
                 <v-spacer></v-spacer>
-                <v-btn color="blue darken-1" text @click="close">
+                <v-btn color="blue darken-1" text @click="dialog=false">
                   Cancelar
                 </v-btn>
-                <v-btn color="blue darken-1" text @click="save"> Grabar </v-btn>
+                <v-btn
+                  color="blue darken-1"
+                  text
+                  @click="insertarItemcotizacion()"
+                >
+                  Agregar
+                </v-btn>
               </v-card-actions>
             </v-card>
           </v-dialog>
+          <!-- Fin formulario creación de items -->
+
           <v-dialog v-model="dialogDelete" max-width="500px">
             <v-card>
               <v-card-title class="text-h5"
@@ -81,7 +93,9 @@
       </template>
       <template v-slot:[`item.actions`]="{ item }">
         <v-icon small class="mr-2" @click="editItem(item)"> mdi-pencil </v-icon>
-        <v-icon small @click="deleteItem(item)"> mdi-delete </v-icon>
+        <v-icon small @click="eliminarItemcotizacion(item._id)">
+          mdi-delete
+        </v-icon>
       </template>
       <template v-slot:no-data>
         <v-btn color="primary" @click="initialize"> Reset </v-btn>
@@ -91,21 +105,32 @@
 </template>
 
 <script>
-import store from "../store/tbl_items.js";
+//import store from "../store/tbl_items.js";
 import storeitems from "../store/index.js";
 
 export default {
   data: () => ({
     dialog: false,
     dialogDelete: false,
-    items: store.items,
+    valid: true,
+
+    itemId: "1.1",
+    descripcion: "Suministro, transporte e instalación de ",
+    unidad: "Un",
+    cantidad: "",
+    return: {
+      itemId: null,
+      descripcion: null,
+      unidad: null,
+      cantidad: null,
+    },
 
     columnas: [
       {
         text: "ÍTEM",
         align: "center",
         sortable: false,
-        value: "item",
+        value: "itemId",
         class: "grey",
         width: "7%",
         divider: "true",
@@ -145,14 +170,7 @@ export default {
         class: "grey",
         divider: "true",
       },
-      {
-        text: "VALOR TOTAL",
-        align: "end",
-        sortable: false,
-        value: "valortotal",
-        class: "grey",
-        divider: "true",
-      },
+
       {
         text: "Actions",
         align: "center",
@@ -162,7 +180,6 @@ export default {
       },
     ],
 
-    items: [],
     editedIndex: -1,
     editedItem: {
       item: "0.0",
@@ -197,16 +214,38 @@ export default {
   },
 
   created: () => {
-    
     storeitems.dispatch("getItemscotizacion");
-    this.initialize();
+    //this.initialize();
   },
   methods: {
     initialize() {
-      this.items = store.items;
+      //this.cotItem = storeitems.itemscotizacion;
+    },
+    eliminarItemcotizacion(id) {
+      let obj = { id };
+      storeitems.dispatch("deleteItemcotizacion", obj).then(() => {
+        storeitems.dispatch("getItemscotizacion");
+      });
     },
 
-/*    editItem(item) {
+    insertarItemcotizacion() {
+      let obj = {
+        itemId: this.itemId,
+        descripcion: this.descripcion,
+        unidad: this.unidad,
+        cantidad: this.cantidad,
+      };
+      storeitems.dispatch("setItemscotizacion", obj).then(() => {
+        storeitems.dispatch("getItemscotizacion");
+        this.itemId = "";
+        this.descripcion = "";
+        this.unidad = "";
+        this.cantidad = "";
+      });
+      this.close();
+    },
+
+    /*    editItem(item) {
       this.editedIndex = this.items.indexOf(item);
       this.editedItem = Object.assign({}, item);
       this.dialog = true;
@@ -217,19 +256,30 @@ export default {
       this.editedItem = Object.assign({}, item);
       this.dialogDelete = true;
     },
-*/
 
-    deleteItemConfirm() {
-      this.items.splice(this.editedIndex, 1);
-      this.closeDelete();
-    },
+save() {
+      if (this.editedIndex > -1) {
+        Object.assign(this.itemscotizacion[this.editedIndex], this.editedItem);
+      } else {
+        this.itemscotizacion.push(this.editedItem);
+      }
+      this.close();
 
-    close() {
+   close() {
       this.dialog = false;
       this.$nextTick(() => {
         this.editedItem = Object.assign({}, this.defaultItem);
         this.editedIndex = -1;
       });
+    },
+    },
+
+
+*/
+
+    deleteItemConfirm() {
+      this.items.splice(this.editedIndex, 1);
+      this.closeDelete();
     },
 
     closeDelete() {
@@ -240,14 +290,7 @@ export default {
       });
     },
 
-    save() {
-      if (this.editedIndex > -1) {
-        Object.assign(this.items[this.editedIndex], this.editedItem);
-      } else {
-        this.items.push(this.editedItem);
-      }
-      this.close();
-    },
+ 
 
     /* Botor para cerrar la ventana de edicion y volver a Cuadro 
       Faltaria hacer las verificaciones de grabar, actualizar, etc..
