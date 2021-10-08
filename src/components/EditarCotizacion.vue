@@ -16,7 +16,7 @@
           <v-dialog v-model="dialog" max-width="500px">
             <template v-slot:activator="{ on, attrs }">
               <v-btn color="primary" dark class="mb-2" v-bind="attrs" v-on="on">
-                Nuevo Item
+                Agregar Item
               </v-btn>
             </template>
             <v-card>
@@ -72,6 +72,7 @@
           </v-dialog>
           <!-- Fin formulario creación de items -->
 
+          <!-- Inicio formulario para eliminar los items -->
           <v-dialog v-model="dialogDelete" max-width="500px">
             <v-card>
               <v-card-title class="text-h5"
@@ -88,12 +89,13 @@
                 <v-spacer></v-spacer>
               </v-card-actions>
             </v-card>
+          <!-- Inicio formulario para eliminar los items -->
           </v-dialog>
         </v-toolbar>
       </template>
       <template v-slot:[`item.actions`]="{ item }">
-        <v-icon small class="mr-2" @click="editItem(item)"> mdi-pencil </v-icon>
-        <v-icon small @click="eliminarItemcotizacion(item._id)">
+        <v-icon small class="mr-2" @click="editarItemcotizacion(item._id)"> mdi-pencil </v-icon>
+        <v-icon small @click="btnEditar(item._id, item.itemId, item.descripcion, item.unidad, item.cantidad )">
           mdi-delete
         </v-icon>
       </template>
@@ -113,17 +115,11 @@ export default {
     dialog: false,
     dialogDelete: false,
     valid: true,
-
     itemId: "1.1",
     descripcion: "Suministro, transporte e instalación de ",
     unidad: "Un",
     cantidad: "",
-    return: {
-      itemId: null,
-      descripcion: null,
-      unidad: null,
-      cantidad: null,
-    },
+    id: null,
 
     columnas: [
       {
@@ -237,13 +233,39 @@ export default {
       };
       storeitems.dispatch("setItemscotizacion", obj).then(() => {
         storeitems.dispatch("getItemscotizacion");
-        this.itemId = "";
-        this.descripcion = "";
-        this.unidad = "";
-        this.cantidad = "";
+        this.$refs.form.reset();
       });
       this.close();
     },
+
+    editarItemcotizacion(id) {
+      let obj = {
+        id: id,
+        itemId: this.itemId,
+        descripcion: this.descripcion,
+        unidad: this.unidad,
+        cantidad: this.cantidad,
+      };
+      store.dispatch("editItemscotizacion", obj).then(() => {
+        store.dispatch("getItemscotizacion");
+        this.$refs.form.reset();
+        this.id = null;
+      });
+    },
+
+    btnEditar(id, itemId, descripcion, unidad, cantidad) {
+      this.id = id;
+      this.itemId = itemId;
+      this.descripcion = descripcion;
+      this.unidad = unidad;
+      this.cantidad = cantidad;
+    },
+
+    btnCancelar() {
+      this.id = null;
+      this.$refs.form.reset();
+    },
+
 
     /*    editItem(item) {
       this.editedIndex = this.items.indexOf(item);
@@ -265,6 +287,7 @@ save() {
       }
       this.close();
 
+*/
    close() {
       this.dialog = false;
       this.$nextTick(() => {
@@ -272,10 +295,6 @@ save() {
         this.editedIndex = -1;
       });
     },
-    },
-
-
-*/
 
     deleteItemConfirm() {
       this.items.splice(this.editedIndex, 1);

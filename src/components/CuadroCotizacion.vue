@@ -69,7 +69,7 @@
             color="indigo"
             outlined
             small
-            @click="editarCuadro()"
+            @click="tabla()"
           >
             Edición</v-btn
           >
@@ -302,9 +302,10 @@ export default {
   }),
 
   methods: {
-    editarCuadro() {
+    //editarCuadro() {
+    tabla(){  
       console.log("editar cotizacion...");
-      this.$router.push("/editarcuadro");
+      this.$router.push("/tabla");
     },
   },
   components: {},
