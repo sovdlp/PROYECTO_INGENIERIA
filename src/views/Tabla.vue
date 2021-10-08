@@ -1,6 +1,7 @@
 <template>
   <div>
     <h1>Tabla desde base de datos</h1>
+    <v-btn color="primary" @click="salir"> Salir </v-btn>
 
     <!-- Inicio formulario para crear los items -->
     <v-container>
@@ -146,6 +147,10 @@ export default {
     resetValidation() {
       this.$refs.form.resetValidation();
     },
+    salir() {
+      this.$router.push("/cuadrocotiza");
+    },
+
   },
   created: () => {
     //dispatch: accede a las acciones del store
