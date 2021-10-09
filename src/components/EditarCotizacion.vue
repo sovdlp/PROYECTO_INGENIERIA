@@ -1,6 +1,7 @@
 <template>
   <v-container>
-    <v-btn color="primary" @click="salir"> Salir </v-btn>
+    <v-btn color="primary" @click="salir"> Regresar </v-btn>
+
     <v-data-table
       :headers="columnas"
       :items="itemscotizacion"
@@ -20,10 +21,7 @@
               </v-btn>
             </template>
             <v-card>
-              <v-card-title>
-                <span class="text-h5">{{ formTitle }}</span>
-              </v-card-title>
-
+              <v-card-title> Modificación de Ítem </v-card-title>
               <v-card-text>
                 <v-container>
                   <v-row>
@@ -31,8 +29,6 @@
                       <v-text-field
                         v-model="itemId"
                         label="Ítem"
-                        placeholder="1.1"
-                        hint="numero de ítem"
                       ></v-text-field>
                     </v-col>
                     <v-text-field
@@ -55,22 +51,37 @@
                   </v-row>
                 </v-container>
               </v-card-text>
+
               <v-card-actions>
                 <v-spacer></v-spacer>
-                <v-btn color="blue darken-1" text @click="dialog=false">
+                <v-btn
+                  v-if="id != null"
+                  color="blue darken-1"
+                  text
+                  @click="btnCancelar()"
+                >
                   Cancelar
                 </v-btn>
                 <v-btn
+                  v-if="id == null"
                   color="blue darken-1"
                   text
                   @click="insertarItemcotizacion()"
                 >
-                  Agregar
+                  Crear Ítem</v-btn
+                >
+                <v-btn
+                  v-if="id != null"
+                  color="blue darken-1"
+                  text
+                  @click="editarItemcotizacion(id)"
+                >
+                  Actualizar
                 </v-btn>
               </v-card-actions>
             </v-card>
           </v-dialog>
-          <!-- Fin formulario creación de items -->
+          <!-- Fin formulario para crear los items -->
 
           <!-- Inicio formulario para eliminar los items -->
           <v-dialog v-model="dialogDelete" max-width="500px">
@@ -84,30 +95,46 @@
                   >Cancelar</v-btn
                 >
                 <v-btn color="blue darken-1" text @click="deleteItemConfirm"
-                  >OK</v-btn
+                  >Borrar</v-btn
                 >
                 <v-spacer></v-spacer>
               </v-card-actions>
             </v-card>
-          <!-- Inicio formulario para eliminar los items -->
           </v-dialog>
+          <!-- fin formulario para eliminar los items -->
         </v-toolbar>
       </template>
+
       <template v-slot:[`item.actions`]="{ item }">
-        <v-icon small class="mr-2" @click="editarItemcotizacion(item._id)"> mdi-pencil </v-icon>
-        <v-icon small @click="btnEditar(item._id, item.itemId, item.descripcion, item.unidad, item.cantidad )">
+        <v-icon
+          small
+          class="mr-2"
+          @click="
+            btnEditar(
+              item,
+              item.itemId,
+              item.descripcion,
+              item.unidad,
+              item.cantidad
+            )
+          "
+        >
+          mdi-pencil
+        </v-icon>
+        <v-icon small @click="eliminarItemcotizacion(item)">
           mdi-delete
         </v-icon>
       </template>
+
       <template v-slot:no-data>
-        <v-btn color="primary" @click="initialize"> Reset </v-btn>
+        <v-btn color="primary"> Reset </v-btn>
       </template>
     </v-data-table>
   </v-container>
 </template>
 
 <script>
-//import store from "../store/tbl_items.js";
+// import store from "../store/tbl_items.js";
 import storeitems from "../store/index.js";
 
 export default {
@@ -115,10 +142,12 @@ export default {
     dialog: false,
     dialogDelete: false,
     valid: true,
+
     itemId: "1.1",
     descripcion: "Suministro, transporte e instalación de ",
     unidad: "Un",
-    cantidad: "",
+    cantidad: 0,
+
     id: null,
 
     columnas: [
@@ -166,7 +195,6 @@ export default {
         class: "grey",
         divider: "true",
       },
-
       {
         text: "Actions",
         align: "center",
@@ -177,14 +205,15 @@ export default {
     ],
 
     editedIndex: -1,
+
     editedItem: {
-      item: "0.0",
-      descripcion: "Suministro, transporte e instalación de ...",
-      unidad: "Ml",
-      cantidad: 0.0,
+      itemId: "",
+      descripcion: "",
+      unidad: "",
+      cantidad: 0,
     },
     defaultItem: {
-      item: "0.0",
+      itemId: "1.1",
       descripcion: "Suministro, transporte e instalación de ...",
       unidad: "Ml",
       cantidad: 0.0,
@@ -194,9 +223,6 @@ export default {
   computed: {
     itemscotizacion: () => {
       return storeitems.state.itemscotizacion;
-    },
-    formTitle() {
-      return this.editedIndex === -1 ? "Nuevo Item" : "Editar Item";
     },
   },
 
@@ -211,12 +237,9 @@ export default {
 
   created: () => {
     storeitems.dispatch("getItemscotizacion");
-    //this.initialize();
   },
+
   methods: {
-    initialize() {
-      //this.cotItem = storeitems.itemscotizacion;
-    },
     eliminarItemcotizacion(id) {
       let obj = { id };
       storeitems.dispatch("deleteItemcotizacion", obj).then(() => {
@@ -233,12 +256,13 @@ export default {
       };
       storeitems.dispatch("setItemscotizacion", obj).then(() => {
         storeitems.dispatch("getItemscotizacion");
-        this.$refs.form.reset();
+        //        this.$refs.form.reset();
       });
       this.close();
     },
 
     editarItemcotizacion(id) {
+      this.dialog = true;
       let obj = {
         id: id,
         itemId: this.itemId,
@@ -246,9 +270,8 @@ export default {
         unidad: this.unidad,
         cantidad: this.cantidad,
       };
-      store.dispatch("editItemscotizacion", obj).then(() => {
-        store.dispatch("getItemscotizacion");
-        this.$refs.form.reset();
+      storeitems.dispatch("editItemscotizacion", obj).then(() => {
+        storeitems.dispatch("getItemscotizacion");
         this.id = null;
       });
     },
@@ -263,42 +286,20 @@ export default {
 
     btnCancelar() {
       this.id = null;
-      this.$refs.form.reset();
-    },
-
-
-    /*    editItem(item) {
-      this.editedIndex = this.items.indexOf(item);
-      this.editedItem = Object.assign({}, item);
-      this.dialog = true;
-    },
-
-    deleteItem(item) {
-      this.editedIndex = this.items.indexOf(item);
-      this.editedItem = Object.assign({}, item);
-      this.dialogDelete = true;
-    },
-
-save() {
-      if (this.editedIndex > -1) {
-        Object.assign(this.itemscotizacion[this.editedIndex], this.editedItem);
-      } else {
-        this.itemscotizacion.push(this.editedItem);
-      }
       this.close();
-
-*/
-   close() {
-      this.dialog = false;
-      this.$nextTick(() => {
-        this.editedItem = Object.assign({}, this.defaultItem);
-        this.editedIndex = -1;
-      });
     },
 
     deleteItemConfirm() {
       this.items.splice(this.editedIndex, 1);
       this.closeDelete();
+    },
+
+    close() {
+      this.dialog = false;
+      this.$nextTick(() => {
+        this.editedItem = Object.assign({}, this.defaultItem);
+        this.editedIndex = -1;
+      });
     },
 
     closeDelete() {
@@ -309,11 +310,7 @@ save() {
       });
     },
 
- 
-
-    /* Botor para cerrar la ventana de edicion y volver a Cuadro 
-      Faltaria hacer las verificaciones de grabar, actualizar, etc..
-    */
+     //* Botor para cerrar la ventana de edicion y volver a Cuadro
 
     salir() {
       this.$router.push("/cuadrocotiza");
