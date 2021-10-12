@@ -23,12 +23,29 @@
                     </v-form>
             </v-card-text>
             <v-card-actions>
-                <v-btn 
-                    color="primary"
-                    :disabled="!isValid"
-                    
-                    >Login
-                    <v-form v-model="isValid"></v-form>
+                <v-btn
+                    class="ma-2"
+                    :loading="loading2"
+                    :disabled="loading2"
+                    color="accent"
+                    @click="loader = 'loading2'"
+                >
+                INGRESAR
+                <template v-slot:loader>
+                <span>Loading...</span>
+                </template>
+                </v-btn>
+                <v-btn
+                    class="ma-2"
+                    :loading="loading3"
+                    :disabled="loading3"
+                    color="success"
+                    @click="loader = 'loading3'"
+                >
+                REGISTRARSE
+                <template v-slot:loader>
+                <span>Cargando...</span>
+                </template>
                 </v-btn>
             </v-card-actions>
         </v-card>
@@ -47,6 +64,28 @@
                 passwordRules: [
                     v => !!v || 'Se requiere su contraseña',
                 ],
-            })
+                
+            }),
+    data: () =>{
+      return {
+        loader: null,
+        loading: false,
+        loading2: false,
+        loading3: false,
+        loading4: false,
+        loading5: false,
+      }
+    },
+    watch: {
+      loader () {
+        const l = this.loader
+        this[l] = !this[l]
+
+        setTimeout(() => (this[l] = false), 3000)
+
+        this.loader = null
+      },
+    },   
     };
+
 </script>
