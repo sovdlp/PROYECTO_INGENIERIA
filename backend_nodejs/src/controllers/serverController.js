@@ -1,10 +1,12 @@
-const itemcotizacion = require('../models/itemcotizacion');
+const cotizacion = require('../models/Cotizacion');
 
 class ServerController {
+
     constructor() {}
 
-    registerItem(req, res) {
-        itemcotizacion.create(req.body, (error, data) => {
+
+    registerCotizaciones(req, res) {
+        cotizacion.create(req.body, (error, data) => {
             if (error) {
                 res.status(500).send();
             } else {
@@ -13,10 +15,40 @@ class ServerController {
         });
     }
 
-    updateItem(req, res) {
-        let {id, itemId, descripcion, unidad, cantidad, valorunit, valortotal } = req.body; 
-        let obj = { itemId, descripcion, unidad, cantidad, valorunit, valortotal }; 
-        itemcotizacion.findByIdAndUpdate(id, { $set: obj}, (error, data) => {
+    updateCotizaciones(req, res) {
+        let {
+            id,
+            nombre,
+            apellido,
+            direccion,
+            ciudad,
+            telefonoOficina,
+            telefonoCelular,
+            nombreEmpresa,
+            email,        
+            nombreItem,
+            cantidad,
+            precioItem,
+            totalItem
+        } = req.body;
+       
+        let obj = {
+            nombre,
+            apellido,
+            direccion,
+            ciudad,
+            telefonoOficina,
+            telefonoCelular,
+            nombreEmpresa,
+            email,               
+            nombreItem,
+            cantidad,
+            precioItem,
+            totalItem
+        };
+        cotizacion.findByIdAndUpdate(id, {
+            $set: obj
+        }, (error, data) => {
             if (error) {
                 res.status(500).send();
             } else {
@@ -25,9 +57,11 @@ class ServerController {
         })
     }
 
-    deleteItem(req, res) {
-        let { id } = req.body;
-        itemcotizacion.findByIdAndDelete(id, (error, data) => {
+    deleteCotizaciones(req, res) {
+        let {
+            id
+        } = req.body;
+        cotizacion.findByIdAndDelete(id, (error, data) => {
             if (error) {
                 res.status(500).send();
             } else {
@@ -36,9 +70,9 @@ class ServerController {
         })
     }
 
-    getItem(req, res) {
+    getCotizaciones(req, res) {
         let id = req.params.id;
-        itemcotizacion.findById(id, (error, data) => {
+        cotizacion.findById(id, (error, data) => {
             if (error) {
                 res.status(500).send();
             } else {
@@ -47,8 +81,8 @@ class ServerController {
         })
     }
 
-    getAllItem(req, res) {
-        itemcotizacion.find((error, data) => {
+    getAllCotizaciones(req, res) {
+        cotizacion.find((error, data) => {
             if (error) {
                 res.status(500).send();
             } else {
@@ -56,7 +90,5 @@ class ServerController {
             }
         })
     }
-
 }
-
 exports.default = ServerController;

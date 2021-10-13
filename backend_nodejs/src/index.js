@@ -1,52 +1,49 @@
-//Importar express
+//Importacion de los Middelwares que nos ayudaran en el proyecto
 const express = require('express');
 const serverRouter = require('./routers/serverRouter');
-//Importar mongoose
 const mongoose = require('mongoose');
-//Importar url de conexión a la BD
 const database = require('./database/db');
-//Importar cors
 const cors = require('cors');
 
-class Server{
-    //constructor
-    constructor(){
-        this.conectarBD();
+class Server {
+    constructor() {
+
+        this.conectDB();
         this.app = express();
-        //Indicar el puerto por el que se ejecutará el servidor
+
+        //Puerto por donde trabajara el servidor
         this.app.set('port', process.env.PORT || 3000);
-        //Indicar que las solicitudes http se trabajará en JSON
+
+        //Tipo de peticiones HTTP que usaremos
         this.app.use(express.json());
         this.app.use(cors());
-        /**
-         * 
-         * ******************Rutas**********************
-         * 
-         * ******/
+
+        //Rutas:
         const router = express.Router();
-        router.get('/', (req, res)=>{
-            console.log("Nueva conexión");
-            res.status(200).json({message: "¡ INGENIERIA S:A:!"});
+        router.get('/', (req, res) => {
+            console.log("New Conection...");
+            res.status(200).json({
+                message: "Hola mundo!"
+            });
         });
         const serverR = new serverRouter.default();
-        
-        //añadir las rutas al servidor
+
+        //Dandole la ruta al servidor
         this.app.use(serverR.router);
         this.app.use(router);
-        //Levantar el servidor/correr el servidor
-        this.app.listen(this.app.get('port'), ()=>{
-            console.log("Servidor corriendo por el puerto => ", this.app.get('port'));
+
+        //Levantando el servidor...
+        this.app.listen(this.app.get('port'), () => {
+            console.log("Our 62-3 Server is Runing on port ", this.app.get('port'));
         });
     }
 
-    conectarBD(){
-        mongoose.connect(database.db).then(()=>{
-            console.log("Conexión a BD con éxito");
-        }).catch((err)=>{
-            console.error("Error de conexión");
+    conectDB() {
+        mongoose.connect(database.db).then(() => {
+            console.log("Our 62-3 Conection is Ready... Go!");
+        }).catch((err) => {
+            console.error("Bad Conection!!");
         });
     }
-
 }
-
 const objServer = new Server();

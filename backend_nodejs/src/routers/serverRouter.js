@@ -1,20 +1,19 @@
 const express = require('express');
 const serverController = require("../controllers/serverController");
 
-class ServerRouter{
-    constructor(){
+class ServerRouter {
+    constructor() {
         this.router = express.Router();
         this.config();
     }
 
-    config(){
+    config() {
         const objServerC = new serverController.default();
-        this.router.get("/itemscotizacion", objServerC.getAllItem);
-        this.router.get("/itemscotizacion/:id", objServerC.getItem);
-        this.router.post("/itemscotizacion", objServerC.registerItem);
-        this.router.put("/itemscotizacion", objServerC.updateItem);
-        this.router.delete("/itemscotizacion", objServerC.deleteItem);       
+        this.router.get("/cotizacion", objServerC.getAllCotizaciones);
+        this.router.get("/cotizacion/:id", objServerC.getCotizaciones);
+        this.router.post("/cotizacion", objServerC.registerCotizaciones);
+        this.router.put("/cotizacion", objServerC.updateCotizaciones);
+        this.router.delete("/cotizacion", objServerC.deleteCotizaciones);
     }
 }
-
 exports.default = ServerRouter;
